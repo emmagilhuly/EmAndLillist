@@ -57,9 +57,9 @@ apiRouter.route('/users')
     var user = new User()
     //set the users information (comes from request)
     user.name = req.body.name;
+    user.email = req.body.email;
     user.username = req.body.username;
     user.password = req.body.password;
-    user.email = req.body.email;
 
     //save the user, check for errors
     user.save(function(err){
@@ -80,6 +80,37 @@ apiRouter.route('/users')
 
       //return the users
       res.json(users)
+    })
+  })
+
+apiRouter.route('/users/:user_id')
+
+  //get the user with that id, accessed at port/api/users/:user_id
+  .get(function(req,res){
+    User.findById(req.params.user_id, function (err, user){
+      if (err) res.send (err);
+
+      //return that user
+      res.json(user)
+    })
+  })
+  .put(function(req, res){
+    //user our user model to find the user we want
+    User.findById(req.params.user_id, function (err, user){
+      if (err) res.send (err)
+      //update the user's info only if its new
+      if (req.body.name) user.name = req.body.name;
+      if (req.body.username) user.username = req.body.username;
+      if (req.body.email) user.email = req.body.email;
+      if (req.body.password) user.password = req.body.password;
+
+      //save the user
+      user.save(function(err){
+        if (err) res.send (err);
+
+        //return a message
+        res.json({message: 'User updated!'})
+      })
     })
   })
 
