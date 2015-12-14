@@ -5,7 +5,7 @@ var express = require('express'),
   morgan = require('morgan'),
   mongoose = require('mongoose'),
   User = require('./app/models/user'),
-  port = process.env.PORT || 4000;
+  port = process.env.PORT || 5000;
 
 //get an instance to express router
 var apiRouter = express.Router()
@@ -30,7 +30,7 @@ apiRouter.use(function(req, res, next){
 app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, \ Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
   next();
 })
 
@@ -51,7 +51,7 @@ apiRouter.get('/', function(req, res){
 
 //more routes for api will happen here
 apiRouter.route('/users')
-  //create a user (accessed at 4000/api/users)
+  //create a user (accessed at port/api/users)
   .post(function(req, res){
     //create new instance of user model
     var user = new User()
@@ -73,6 +73,15 @@ apiRouter.route('/users')
       res.json({message: 'user created!'})
     })
   })
+  //get all the users (accessed at port/api/users)
+  .get(function(req,res){
+    User.find(function(err, users){
+      if (err) res.send (err)
+
+      //return the users
+      res.json(users)
+    })
+  })
 
 
 //REGISTER OUR ROUTES
@@ -82,11 +91,3 @@ app.use('/api', apiRouter)
 //START THE SERVER
 app.listen(port)
 console.log('port running on ' + port)
-
-
-
-
-
-
-
-
