@@ -113,7 +113,15 @@ apiRouter.route('/users/:user_id')
       })
     })
   })
+  .delete(function(req, res){
+        User.remove({
+            _id: req.params.user_id
+        }, function (err, user) {
+            if (err) res.send (err);
 
+            res.json({message: 'Successfully deleted'})
+          })
+  })
 
 //REGISTER OUR ROUTES
 //all of our routes prefixed with /api
