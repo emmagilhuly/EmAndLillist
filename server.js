@@ -4,7 +4,9 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   mongoose = require('mongoose'),
+  jwt = require('jsonwebtoken'),
   User = require('./app/models/user'),
+  superSecret = "emmalily",
   port = process.env.PORT || 5000;
 
 //get an instance to express router
@@ -16,6 +18,47 @@ mongoose.connect('mongodb://localhost/ellist')
 //use body parser so we can grab info from post requests
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+//basic route for homepage
+app.get('/', function(req, res){
+  res.send('welcome to the home page!')
+})
+
+//route to authenticate user port/api/authenticate
+apiRouter.post('/authenticate', function (req, res){
+  //find the user
+  //select the name email username and password
+  User.findOne({
+    username: req.body.username
+  }).select('name email username password').exec(function(err, user){
+    if (err) throw err;
+    //no user with that usernmae was found
+    if (!user) {
+      res.json({success: false, message: 'Authentication failed user not found'});
+    } else if (user) {
+      //check if passwords match
+      var validPassword = user.comparePassword(req.body.password);
+      if (!validPassword){
+        res.json({success: false, message: 'Authentication failed wrong password'})
+      } else {
+        //if user is found and password is right, create a token
+        var token = jwt.sign({
+          name: user.name,
+          username: user.username,
+          email: user.email
+        }, superSecret, {
+          expireInMinutes: 1440 // expires in 24 hours
+        });
+        //return the info including token as json
+        res.json({
+          success: true,
+          message: 'Enjoy your token!',
+          token: token
+        })
+      }
+    }
+  })
+})
 
 //middleware to use for all requests
 apiRouter.use(function(req, res, next){
@@ -38,10 +81,6 @@ app.use(function(req, res, next){
 app.use(morgan('dev'))
 
 //ROUTES FOR OUR API
-//basic route for homepage
-app.get('/', function(req, res){
-  res.send('welcome to the home page!')
-})
 
 //test route to make sure it works
 //accessed at GET 4000/api
