@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	bcrypt = require('bcrypt-nodejs');
 
-//user schema 
+//user schema
 var UserSchema = new Schema({
 	name: String,
 	email: String,
@@ -15,13 +15,11 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function(next){
 	var user = this;
 	//hash pw only if pw has been changed or user is new
-	if (!user.isModified('password'))
-		return next()
+	if (!user.isModified('password')) return next()
 
 	//generate the salt
 	bcrypt.hash(user.password, null, null, function(err, hash){
-		if (err) 
-			return next(err)
+		if (err) return next(err)
 
 		//change the pw to the hash version
 		user.password = hash;
@@ -37,15 +35,3 @@ UserSchema.methods.comparePassword = function(password){
 
 //return the model
 module.exports = mongoose.model('User', UserSchema)
-
-
-
-
-
-
-
-
-
-
-
-
