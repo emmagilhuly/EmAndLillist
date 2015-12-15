@@ -10,13 +10,39 @@ angular.module('authService', [])
   var authFactory = {};
 
   //log in a user
+  authFactory.login = function(username, password){
+    //return the promise and its data
+    return $http.post('/api/authenticate', {
+      username: username,
+      password: password
+    })
+    .success(function(data){
+      AuthToken.setToken(data.token);
+      return data;
+    })
+  };
 
+  //logout by clearing the token
+  authFactory.logout = function(){
+    //clear the token
+    AuthToken.setToken();
+  }
 
-  //logout
+  //check if a user is logged in, check if there is a local token
+  authFactory.isLoggedIn = function() {
+    if (AuthToken.getToken())
+      return true;
+    else
+      return false;
+  }
 
-  //check if a user is logged in
-
-  // get user info
+  // get the logged in user
+  authFactory.getUser = function(){
+    if (AuthToken.getToken())
+      return $http.get('/api/me');
+    else
+      return $q.reject({message: 'User has no token'});
+  }
 
   //return auth factory object
   return authFactory;
