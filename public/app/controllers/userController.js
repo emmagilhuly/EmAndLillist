@@ -13,7 +13,7 @@ angular.module('userCtrl', ['userService'])
 			//when all the users come back, remove processing variable
 			self.processing = false
 			//bind the data to a controller variable, this is from userService
-			self.user = data;
+			self.users = data;
 		})
 
 	//function to delete user
@@ -35,7 +35,7 @@ angular.module('userCtrl', ['userService'])
 				})
 
 			})
-	}	
+	}
 
 })
 
@@ -45,7 +45,7 @@ angular.module('userCtrl', ['userService'])
 
 	//variable to hide/show elements of the view
 	//differentiates between create/edit pages
-	self.type = 'create'
+	self.type = 'create';
 
 	//function to create user
 	self.saveUser = function(){
@@ -57,15 +57,42 @@ angular.module('userCtrl', ['userService'])
 		//use the create function in userService
 		User.create(self.userData)
 			.success(function(data){
-				self.processing = false
+				self.processing = false;
 
 				//clear the form
 				self.userData = {};
-				self.message = data.message
+				self.message = data.message;
 			})
 	}
 })
 
+.controller('userEditController', function($routeParams, User){
+	var self = this;
 
+	self.type = 'edit';
 
+	//get the user data for the user you want to edit
+	//$routeParams is the way we grab the data from the URL
+	User.get($routeParams.user_id)
+		.success(function(data){
+			self.userData = data;
+		})
 
+	//function to create user
+	self.saveUser = function(){
+		self.processing = true;
+
+		//clear message
+		self.message = '';
+
+		//use the create function in userService
+		User.update($routeParams.user_id, self.userData)
+			.success(function(data){
+				self.processing = false;
+
+				//clear the form
+				self.userData = {};
+				self.message = data.message;
+			});
+	};
+});

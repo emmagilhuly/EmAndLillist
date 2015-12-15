@@ -1,4 +1,4 @@
-angular.module('mainCtrl', ['authService'])
+angular.module('mainCtrl', [])
 
 .controller('mainController', function($rootScope, $location, Auth){
 	var self = this
@@ -9,13 +9,13 @@ angular.module('mainCtrl', ['authService'])
 	//check to see if a user is logged in on every request
 	$rootScope.$on('$routeChangeStart', function(){
 		self.loggedIn = Auth.isLoggedIn()
-	})
 
 	//get user info on page load
 	Auth.getUser()
 		.then(function(data){
-			self.user = data
+			self.user = data.data;
 		})
+	});
 
 	//function to handle login form
 	self.doLogin = function(){
@@ -37,6 +37,6 @@ angular.module('mainCtrl', ['authService'])
 	//function to handle logging out
 	self.doLogout = function(){
 		Auth.logout()
-		$location.path('/')
+		$location.path('/login')
 	}
 })
