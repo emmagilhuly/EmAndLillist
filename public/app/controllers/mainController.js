@@ -19,14 +19,11 @@ angular.module('mainCtrl', ['authService'])
 
 	//function to handle login form
 	self.doLogin = function(){
+		self.processing = true;
 		//call the Auth.login() function
 		Auth.login(self.loginData.username, self.loginData.password)
 		.success(function(data){
-			//get user info after loggin in
-			Auth.getUser()
-				.then(function(data){
-					self.user = data.data
-				})
+			self.processing = false;
 			//if a user successfully logs in, redirect to users page
 			$location.path('/users')
 		})
@@ -38,10 +35,3 @@ angular.module('mainCtrl', ['authService'])
 		$location.path('/')
 	}
 })
-
-
-
-
-
-
-
