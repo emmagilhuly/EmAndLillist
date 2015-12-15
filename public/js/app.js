@@ -1,4 +1,4 @@
-angular.module('emAndLilApp', [])
+angular.module('emAndLilApp', ['routerRoutes'])
 
 .controller('mainController', function(){
 	//bind this to self
@@ -19,7 +19,6 @@ angular.module('emAndLilApp', [])
 .controller('aboutController', function(){
 	var self = this;
 	self.message = 'About Page!'
-
 })
 
 
