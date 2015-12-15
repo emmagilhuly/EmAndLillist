@@ -13,5 +13,20 @@ angular.module('emAndLilApp', [])
 		{name: 'imac', color: 'silver', price: 1500},
 		{name: 'macbook air', color: 'black', price: 500}
 	]
+
+	//info that comes from our form
+	self.itemData = {}
+	self.addItem = function(){
+		//add a item to list
+		self.items.push({
+			name: self.itemData.name,
+			color: self.itemData.color,
+			price: self.itemData.price,
+		})
+
+		//after our item has been added, clear the form
+		self.itemData = {}
+	}
+
 })
 
