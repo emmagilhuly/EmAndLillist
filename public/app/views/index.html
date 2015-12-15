@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="emAndLilApp">
+<html>
     <head>
         <meta charset="utf-8">
         <title>EmAndLilList</title>
@@ -19,21 +19,19 @@
         <!-- CONTROLLERS -->
         <script src="app/controllers/mainController.js"></script>
         <script src="app/controllers/userController.js"></script>
-        <script src="app/controllers/itemController.js"></script>
         <!-- SERVICES -->
         <script src="app/services/authService.js"></script>
         <script src="app/services/userService.js"></script>
-        <script src="app/services/itemService.js"></script>
         <!-- MAIN ANGULAR APP FILES -->
-        <script src="app/app-routes.js"></script>
+        <script src="app/app.routes.js"></script>
         <script src="app/app.js"></script>
 
     </head>
 
-    <body ng-controller="mainController as main">
+    <body ng-app="emAndLilApp" ng-controller="mainController as main">
       <!-- NAVBAR -->
       <header>
-        <div class="navbar navbar-inverse">
+        <div class="navbar navbar-inverse" ng-if="main.loggedIn">
           <div class="container">
             <div class="navbar-header">
               <a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span>Em and Lil List</a>
