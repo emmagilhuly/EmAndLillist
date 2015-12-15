@@ -17,7 +17,7 @@
 	    <script src="js/app-routes.js"></script>
     </head>
 
-    <body class="container">
+    <body class="container" ng-app="emAndLilApp" ng-controller="mainController as main">
       <header>
         <nav class="navbar navbar-default">
           <div class="navbar-header">
@@ -27,15 +27,15 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
             <li><a href="/about"><i class="fa fa-shield"></i>About</a></li>
-            <li><a href="/contact"><i class="fa fa-comment"></i>Contact</a></li>
           </ul>
         <nav>
       </header>
 
       <main>
 
-        stuff goes here!
-
+          <div class="jumbotron">
+            <h1> {{main.bigMessage}} </h1>
+          </div>
       </main>
 
     </body>
@@ -78,6 +78,3 @@
 
 
         </div> -->
-
-
- 
