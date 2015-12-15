@@ -26,7 +26,7 @@ angular.module('authService', [])
   authFactory.logout = function(){
     //clear the token
     AuthToken.setToken();
-  }
+  };
 
   //check if a user is logged in, check if there is a local token
   authFactory.isLoggedIn = function() {
@@ -34,22 +34,24 @@ angular.module('authService', [])
       return true;
     else
       return false;
-  }
+  };
 
   // get the logged in user
   authFactory.getUser = function(){
     if (AuthToken.getToken())
-      return $http.get('/api/me', { cache: true})
+      return $http.get('/api/me', { cache: true});
     else
       return $q.reject({message: 'User has no token'});
-  }
+  };
 
   //return auth factory object
   return authFactory;
-})
+});
 
+// =========================================
 //factory for handling tokens
 //inject $window to store token client-side
+// =========================================
 .factory('AuthToken', function($window){
   var authTokenFactory = {};
 
@@ -64,7 +66,7 @@ angular.module('authService', [])
   authTokenFactory.setToken = function(token){
     if (token)
       $window.localStorage.setItem('token', token);
-    else 
+    else
       $window.localStorage.removeItem('token');
     }
 
@@ -72,6 +74,10 @@ angular.module('authService', [])
   return authTokenFactory;
 
 })
+
+// =========================================
+// application configuration to integrate token into request
+// =========================================
 
 .factory('AuthInterceptor', function ($q, $location, AuthToken){
   var interceptorFactory = {}
@@ -87,19 +93,20 @@ angular.module('authService', [])
       config.headers['x-access-token'] = token;
 
     return config;
-  }
+  };
 
   //happens on response errors
   interceptorFactory.responseError = function(response){
 
     //if our server returns a 403 forbidden response
-    if (response.status == 403)
+    if (response.status == 403){
+      AuthToken.setToken();
       $location.path('/login');
+    }
 
     //return the errors from the server as a promise
     return $q.reject(response)
   }
 
   return interceptorFactory;
-})
-
+});
