@@ -41,6 +41,14 @@
         		</tbody>
         	</table>
 
+        	<form class="form-inline" ng-submit="main.addItem()">
+        		<input type="text" class="form-control" placeholder="Add Item" ng-model="main.itemData.name">
+        		<input type="text" class="form-control" placeholder="Add Color" ng-model="main.itemData.color">
+        		<input type="text" class="form-control" placeholder="Add Price" ng-model="main.itemData.price">
+        		<button type="submit" class="btn btn-success">Add Item</button>
+        	</form>
+        	
+
         </div>
         
     </body>
