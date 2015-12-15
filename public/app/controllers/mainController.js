@@ -19,17 +19,19 @@ angular.module('mainCtrl', ['authService'])
 
 	//function to handle login form
 	self.doLogin = function(){
+		self.processing = true;
+		//clear the error
+		self.error = '';
 		//call the Auth.login() function
 		Auth.login(self.loginData.username, self.loginData.password)
 		.success(function(data){
-			//get user info after loggin in
-			Auth.getUser()
-				.then(function(data){
-					self.user = data.data
-				})
+			self.processing = false;
 			//if a user successfully logs in, redirect to users page
-			$location.path('/users')
-		})
+			if (data.success)
+				$location.path('/users')
+			else
+				self.error = data.message
+		});
 	}
 
 	//function to handle logging out
@@ -38,10 +40,3 @@ angular.module('mainCtrl', ['authService'])
 		$location.path('/')
 	}
 })
-
-
-
-
-
-
-
