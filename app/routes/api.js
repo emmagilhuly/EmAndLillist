@@ -50,6 +50,29 @@ apiRouter.post('/authenticate', function(req, res){
 	});
 });
 
+apiRouter.route('/users')
+
+	//create a user accessed at POST port/users
+	.post(function(req,res){
+
+		var user = new User(); //create a new instance of the User model
+		user.name = req.body.name; //set the users name comes from the request
+		user.username = req.body.username; // set the user's username comes from the request
+		user.password = req.body.password;
+
+		user.save(function(err){
+			if (err){
+				//duplicate entry
+				if (err.code == 11000)
+					return res.json({success: false, message: 'A user with that username already exist'});
+				else
+					return res.send(err);
+				}
+				//return a message
+				res.json({message: 'user created'})
+		});
+	})
+
 //route middleware to verify token
 apiRouter.use(function(req, res, next){
 	//do logging
@@ -88,27 +111,6 @@ apiRouter.get('/', function(req,res){
 
 //on routes that end in /users
 apiRouter.route('/users')
-
-	//create a user accessed at POST port/users
-	.post(function(req,res){
-
-		var user = new User(); //create a new instance of the User model
-		user.name = req.body.name; //set the users name comes from the request
-		user.username = req.body.username; // set the user's username comes from the request
-		user.password = req.body.password;
-
-		user.save(function(err){
-			if (err){
-				//duplicate entry
-				if (err.code == 11000)
-					return res.json({success: false, message: 'A user with that username already exist'});
-				else
-					return res.send(err);
-				}
-				//return a message
-				res.json({message: 'user created'})
-		});
-	})
 
 	//get all the users accessed at port/api/users
 	.get(function(req, res){
