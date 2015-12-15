@@ -112,6 +112,7 @@ apiRouter.route('/users')
 
 	//get all the users accessed at port/api/users
 	.get(function(req, res){
+		console.log('helloooooo')
 		User.find({}, function(err, users){
 			if (err) res.send(err);
 
