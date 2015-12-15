@@ -1,29 +1,16 @@
 //load the express package and create our app
 var express = require('express'),
   app = express(),
-  path = require('path'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   mongoose = require('mongoose'),
-  jwt = require('jsonwebtoken'),
-  User = require('./app/models/user'),
   config = require('./config'),
-  apiRoutes = require('./app/routes/api')(app, express),
-  port = process.env.PORT || 5000;
-
-mongoose.connect('config.database')
+  path = require('path'),
 
 //App Configuration
 //use body parser so we can grab info from post requests
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-//set the public folder to serve public assets
-app.use(express.static(__dirname + '/public'));
-
-//set up our one route to the index.html file
-app.get('*', function(req, res){
-  res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
-})
 
 //configure our app to handle CORS requests
 app.use(function(req, res, next){
@@ -32,13 +19,32 @@ app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
   next();
 })
-
+  
 //log all requests to the console
 app.use(morgan('dev'))
 
-//REGISTER OUR ROUTES
+//connect to our database
+mongoose.connect('config.database')
+
+//set the static files location
+//used for requests that our frontend will make
+app.use(express.static(__dirname + '/public'));
+
+//ROUTES FOR OUR API 
+//====================================
+
+//API ROUTES
+var apiRoutes = require('./app/routes/api')(app, express)
 //all of our routes prefixed with /api
 app.use('/api', apiRoutes)
+
+//MAIN CATCHALL ROUTE
+//SEND USERS TO FRONT-END
+//has to be registered after api routes
+//set up our one route to the index.html file
+app.get('*', function(req, res){
+  res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+})
 
 //START THE SERVER
 app.listen(config.port)
