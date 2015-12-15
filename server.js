@@ -43,7 +43,7 @@ app.use('/api', apiRoutes)
 //has to be registered after api routes
 //set up our one route to the index.html file
 app.get('*', function(req, res){
-  res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+  res.sendFile(path.join(__dirname + '/public/app/index.html'));
 })
 
 //START THE SERVER

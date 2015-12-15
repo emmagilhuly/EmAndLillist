@@ -1,4 +1,4 @@
-angular.module('mainController', [])
+angular.module('mainCtrl', ['authService'])
 
 .controller('mainController', function($rootScope, $location, Auth){
 	var self = this
@@ -13,7 +13,7 @@ angular.module('mainController', [])
 
 	//get user info on page load
 	Auth.getUser()
-		.success(function(data){
+		.then(function(data){
 			self.user = data
 		})
 

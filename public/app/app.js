@@ -1,2 +1,2 @@
-angular.module('emAndLilApp', ['ngAnimate', 'appRoutes', 'authService', 'mainController', 'itemController', 'userController', 'userService', 'itemService'])
+angular.module('emAndLilApp', ['ngAnimate', 'appRoutes', 'authService', 'mainCtrl', 'userCtrl', 'itemCtrl', 'userService', 'itemService'])
 

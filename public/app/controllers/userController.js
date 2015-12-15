@@ -1,5 +1,5 @@
 //inject the user service into our main Angular module
-angular.module('emAndLilApp', ['userService'])
+angular.module('userCtrl', ['userService'])
 
 //create a controller and inject the User factory
 .controller('userController', function(User){
