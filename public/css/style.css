@@ -1,0 +1,16 @@
+body {
+	padding-top: 50px;
+}
+
+#content-views {
+	position: relative;
+}
+
+.ng-leave {
+	width: 100%;
+	position: absolute;
+	-webkit-animation:zoomOutDown 0.5s both ease-in;	
+	-moz-animation:zoomOutDown 0.5s both ease-in;
+		animation: zoomOutDown 0.5s both ease-in;
+}
+
