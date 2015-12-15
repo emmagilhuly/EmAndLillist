@@ -8,10 +8,10 @@ angular.module('emAndLilApp', [])
 	//define a basic variable
 	self.message = 'hey come and see how good i look'
 	//define a list of items
-	self.items = {
+	self.items = [
 		{name: 'macbook pro', color: 'silver', price: 1000},
 		{name: 'imac', color: 'silver', price: 1500},
 		{name: 'macbook air', color: 'black', price: 500}
-	}
+	]
 })
 
