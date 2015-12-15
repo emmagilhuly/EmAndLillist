@@ -17,6 +17,13 @@ angular.module('appRoutes', ['ngRoute'])
       controllerAs: 'login'
   })
 
+  //show all users
+  .when('/users', {
+    templateUrl: 'app/views/pages/users/all.html',
+      controller: 'userController',
+      controllerAs: 'user'
+  })
+
 //get rid of the hash in the URL
 $locationProvider.html5Mode(true);
 
