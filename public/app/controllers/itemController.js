@@ -1,5 +1,5 @@
 //inject the item service into our main Angular module
-angular.module('emAndLilApp', ['itemService'])
+angular.module('itemCtrl', ['itemService'])
 
 //create a controller and inject the Item factory
 .controller('itemController', function(Item){
