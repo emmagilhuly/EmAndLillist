@@ -15,8 +15,31 @@
 
     <body class="container" ng-app="emAndLilApp" ng-controller="mainController as main">
         <div class="jumbotron">
+        	<div class="form-group">
+        		<label>Message</label>
+        		<input type="text" class="form-control" ng-model="main.message">
+        	</div>
+
         	<h2>this is my message:</h2>
         	{{main.message}}
+
+        	<h2>this is my list:</h2>
+        	<table class="table table-bordered">
+        		<thead>
+        			<tr>
+        				<td>name</td>
+        				<td>color</td>
+        				<td>price</td>
+        			</tr>
+        		</thead>
+        		<tbody>
+        			<tr ng-repeat="items in main.items">
+        				<td>{{items.name}}</td>
+        				<td>{{items.color}}</td>
+        				<td>{{items.price}}</td>
+        			</tr>
+        		</tbody>
+        	</table>
 
         </div>
         
