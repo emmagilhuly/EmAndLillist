@@ -64,9 +64,25 @@ apiRouter.post('/authenticate', function (req, res){
 apiRouter.use(function(req, res, next){
   //do logging
   console.log('someone just came to our app')
-  //add more later
-  //authenticate users
-  next() //go to next routes, don't stop here
+  //check header or url paramaters or post parameters for token
+  var token = req.body.token || req.param('token') || req.headers['x-access-token']
+  //decode token
+  if (token) {
+    //verifies secret and checks exp
+    jwt.verify(token, superSecret, function(err, decoded){
+      if (err) {
+        return res.status(403).send({success: false, message: 'failed to authenticate token'})
+      } else {
+        //if everything is good, save request for use in other routes
+        req.decoded = decoded
+        next() //go to next routes, don't stop here
+      }
+    })
+  } else {
+    //if there is no token
+    //return an HTTP response of 403 (access forbidden) and an error message
+    return res.status(403).send({success: false, message: 'no token provided.'})
+  }
 })
 
 //configure our app to handle CORS requests
