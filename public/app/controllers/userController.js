@@ -38,3 +38,34 @@ angular.module('userCtrl', ['userService'])
 	}	
 
 })
+
+//controller applied to user creation page
+.controller('userCreateController', function(User){
+	var self = this;
+
+	//variable to hide/show elements of the view
+	//differentiates between create/edit pages
+	self.type = 'create'
+
+	//function to create user
+	self.saveUser = function(){
+		self.processing = true;
+
+		//clear message
+		self.message = '';
+
+		//use the create function in userService
+		User.create(self.userData)
+			.success(function(data){
+				self.processing = false
+
+				//clear the form
+				self.userData = {};
+				self.message = data.message
+			})
+	}
+})
+
+
+
+
