@@ -19,33 +19,33 @@ app.use(function(req, res, next){
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
   next();
 })
-  
+
 //log all requests to the console
 app.use(morgan('dev'))
 
 //connect to our database
-mongoose.connect('config.database')
+mongoose.connect(config.database)
 
 //set the static files location
 //used for requests that our frontend will make
 app.use(express.static(__dirname + '/public'));
 
-//ROUTES FOR OUR API 
+//ROUTES FOR OUR API
 //====================================
 
 //API ROUTES
-var apiRoutes = require('./app/routes/api')(app, express)
+var apiRoutes = require('./app/routes/api')(app, express);
 //all of our routes prefixed with /api
-app.use('/api', apiRoutes)
+app.use('/api', apiRoutes);
 
 //MAIN CATCHALL ROUTE
 //SEND USERS TO FRONT-END
 //has to be registered after api routes
 //set up our one route to the index.html file
 app.get('*', function(req, res){
-  res.sendFile(path.join(__dirname + '/public/app/index.html'));
-})
+  res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+});
 
 //START THE SERVER
-app.listen(config.port)
-console.log('port running on ' + config.port)
+app.listen(config.port);
+console.log('port running on ' + config.port);

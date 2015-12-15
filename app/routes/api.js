@@ -33,7 +33,7 @@ apiRouter.post('/authenticate', function(req, res){
 				})
 			} else {
 				//if user is found and password is right, create a token
-				var token = jwt.sign(
+				var token = jwt.sign({
 					name: user.name,
 					username: user.username
 				}, superSecret, {
@@ -98,7 +98,7 @@ apiRouter.route('/users')
 		user.password = req.body.password;
 
 		user.save(function(err){
-			if (err)
+			if (err){
 				//duplicate entry
 				if (err.code == 11000)
 					return res.json({success: false, message: 'A user with that username already exist'});
@@ -108,7 +108,7 @@ apiRouter.route('/users')
 				//return a message
 				res.json({message: 'user created'})
 		});
-	});
+	})
 
 	//get all the users accessed at port/api/users
 	.get(function(req, res){

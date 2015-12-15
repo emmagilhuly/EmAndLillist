@@ -1,5 +1,5 @@
 //inject ngRoute for all our routing needs
-angular.module('appRoutes', ['ngRoute'])
+angular.module('app-routes', ['ngRoute'])
 
 //configure our routes
 .config(function($routeProvider, $locationProvider){
@@ -28,6 +28,13 @@ angular.module('appRoutes', ['ngRoute'])
   .when('/users/create', {
     templateUrl: 'app/views/pages/users/single.html',
       controller: 'userCreateController',
+      controllerAs: 'user'
+  })
+
+  //page to edit a user
+  .when('/users/:user_id', {
+    templateUrl: 'app/views/pages/users/single.html',
+      controller: 'userEditController',
       controllerAs: 'user'
   })
 
