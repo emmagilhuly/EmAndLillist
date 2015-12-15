@@ -5,7 +5,7 @@ var express = require('express'),
   morgan = require('morgan'),
   mongoose = require('mongoose'),
   config = require('./config'),
-  path = require('path'),
+  path = require('path');
 
 //App Configuration
 //use body parser so we can grab info from post requests
