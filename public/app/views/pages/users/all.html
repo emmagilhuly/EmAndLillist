@@ -20,7 +20,6 @@
       <th> _id </th>
       <th> Name <th>
       <th> Username <th>
-      <th> Email </th>
       <th clas"col-sm-2"></th>
     </tr>
   </thead>
@@ -28,16 +27,14 @@
   <tbody>
 
 <!-- LOOP OVER USERS-->
-    <tr ng-reapeat="person in user.users">
+    <tr ng-repeat="person in user.users">
       <td> {{person._id}}</td>
       <td> {{person.name}}</td>
       <td> {{person.username}}</td>
-      <td> {{person.email}}</td>
       <td class="col-sm-2">
         <a ng-href="/users/{{person._id}}" class="btn btn-danger"> Edit </a>
         <a ng-href="#" ng-click="user.deleteUser(person._id)" class="btn btn-primary"> Delete </a>
       </td>
     </tr>
-
   </tbody>
 </table>
