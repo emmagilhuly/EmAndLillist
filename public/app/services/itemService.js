@@ -15,7 +15,7 @@ angular.module('itemService', [])
 	}
 
 	//create a item
-	itemFactory.create = function(itemData) {
+	itemFactory.create = function(itemDatat) {
 		return $http.post('/api/items/', itemData)
 	}
 
