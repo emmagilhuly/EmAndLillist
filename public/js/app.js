@@ -22,13 +22,6 @@ angular.module('emAndLilApp', [])
 
 })
 
-.controller('homeController', function(){
-	var self = this;
-	self.message = 'This is the home page!'
-
-})
-
-
 
 //define a list of items
 // 	self.items = [
