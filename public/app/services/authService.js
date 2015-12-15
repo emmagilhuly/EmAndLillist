@@ -19,7 +19,7 @@ angular.module('authService', [])
     .success(function(data){
       AuthToken.setToken(data.token);
       return data;
-    })
+    });
   };
 
   //logout by clearing the token
