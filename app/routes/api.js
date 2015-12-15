@@ -3,12 +3,11 @@ var bodyParser = require('body-parser'),
 	jwt = require('jsonwebtoken'),
 	config = require('../../config')
 
-//super secret for creating tokens	
+//super secret for creating tokens
 var superSecret = config.secret
 
 module.exports = function(app, express) {
 	var apiRouter = express.Router()
-
 
 //route to authenticate a user (POST port/api/authenticate)
 apiRouter.post('/authenticate', function(req, res){
@@ -73,4 +72,81 @@ apiRouter.get('/', function(req,res){
 	res.json({message: 'hooray! welcome to our api!'})
 })
 
+//on routes that end in /users
+apiRouter.route('/users')
 
+	//create a user accessed at POST port/users
+	.post(function(req,res){
+
+		var user = new User(); //create a new instance of the User model
+		user.name = req.body.name; //set the users name comes from the request
+		user.email = req.body.email;
+		user.username = req.body.username; // set the user's username comes from the request
+		user.password = req.body.password;
+
+		user.save(function(err){
+			if (err) res.send(err);
+			//return a message
+			res.json({message: 'user created'})
+		})
+	})
+
+	//get all the users accessed at port/api/users
+	.get(function(req, res){
+		User.find(function(err, users){
+			if (err) res.send(err);
+
+			//return the users
+			res.json(users);
+		})
+	})
+
+//on the routes that end in /users/:user_id
+
+apiRouter.route('users/:user_id')
+
+	//get the user with that id
+	.get(function(req, res){
+		User.findById(req.params.user_id, function (err, user){
+			if (err) res.send(err);
+
+			//return that user
+			res.json(user)
+		})
+	})
+
+	//update the user with this id
+	.put(function(req, res){
+		User.findById(req.params.user_id, function(err,user){
+			if (err) res.send(err);
+
+			//set the new user information if it exists in the request
+			if (req.body.name) user.name = req.body.name;
+			if (req.body.email) user.email = req.body.email;
+			if (req.body.username) user.username = req.body.username;
+			if (req.body.password) user.password = req.body.password;
+
+			//save the user
+			user.save(function(err){
+				if (err) res.send(err);
+
+				//return a message
+				res.json({message: 'User updated'});
+			})
+
+		})
+	})
+
+	//delete the user with this id
+	.delete(function(req, res){
+		User.remove({
+			_id: req.params.user_id
+		}, function (err, user) {
+			if (err) res.send (err);
+
+			res.json({message: 'Successfully deleted'})
+		})
+	})
+ return apiRouter;
+
+};
