@@ -1,6 +1,7 @@
 //load the express package and create our app
 var express = require('express'),
   app = express(),
+  path = require('path'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   mongoose = require('mongoose'),
@@ -18,10 +19,17 @@ mongoose.connect('mongodb://localhost/ellist')
 //use body parser so we can grab info from post requests
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+//set the public folder to serve public assets
+app.use(express.static(__dirname + '/public'));
 
-//basic route for homepage
-app.get('/', function(req, res){
-  res.send('welcome to the home page!')
+// //basic route for homepage
+// app.get('/', function(req, res){
+//   res.send('welcome to the home page!')
+// })
+
+//set up our one route to the index.html file
+app.get('*', function(req, res){
+  res.sendFile(path.join(__dirname + '/public/views/index.html'));
 })
 
 //route to authenticate user port/api/authenticate
