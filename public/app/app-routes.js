@@ -24,6 +24,13 @@ angular.module('appRoutes', ['ngRoute'])
       controllerAs: 'user'
   })
 
+  //form to create a new user, same view as edit page
+  .when('/users/create', {
+    templateUrl: 'app/views/pages/users/single.html',
+      controller: 'userCreateController',
+      controllerAs: 'user'
+  })
+
 //get rid of the hash in the URL
 $locationProvider.html5Mode(true);
 
