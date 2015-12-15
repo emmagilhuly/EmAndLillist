@@ -3,7 +3,7 @@ var bodyParser = require('body-parser'),
 	jwt = require('jsonwebtoken'),
 	config = require('../../config')
 
-//super secret for creating tokens	
+//super secret for creating tokens
 var superSecret = config.secret
 
 module.exports = function(app, express) {
@@ -73,4 +73,31 @@ apiRouter.get('/', function(req,res){
 	res.json({message: 'hooray! welcome to our api!'})
 })
 
+//on routes that end in /users
+apiRouter.route('/users')
 
+	//create a user accessed at POST port/users
+	.post(function(req,res){
+
+		var user = new User(); //create a new instance of the User model
+		user.name = req.body.name; //set the users name comes from the request
+		user.email = req.body.email;
+		user.username = req.body.username; // set the user's username comes from the request
+		user.password = req.body.password;
+
+		user.save(function(err){
+			if (err) res.send(err);
+			//return a message
+			res.json({message: 'user created'})
+		})
+	})
+
+	//get all the users accessed at port/api/users
+	.get(function(req, res){
+		User.find(function(err, users){
+			if (err) res.send(err);
+
+			//return the users
+			res.json(users);
+		})
+	})
