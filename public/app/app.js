@@ -1,4 +1,4 @@
-angular.module('emAndLilApp', ['routerRoutes'])
+angular.module('emAndLilApp', ['routerRoutes', 'ngAnimate'])
 
 .controller('mainController', function(){
 	//bind this to self

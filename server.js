@@ -7,13 +7,13 @@ var express = require('express'),
   mongoose = require('mongoose'),
   jwt = require('jsonwebtoken'),
   User = require('./app/models/user'),
-  superSecret = "emmalily",
+  config = require('./config'),
   port = process.env.PORT || 5000;
 
 //get an instance to express router
 var apiRouter = express.Router()
 
-mongoose.connect('mongodb://localhost/ellist')
+mongoose.connect('config.database')
 
 //App Configuration
 //use body parser so we can grab info from post requests
@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
 
 //set up our one route to the index.html file
 app.get('*', function(req, res){
-  res.sendFile(path.join(__dirname + '/public/views/index.html'));
+  res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 })
 
 //route to authenticate user port/api/authenticate
@@ -196,5 +196,5 @@ apiRouter.route('/users/:user_id')
 app.use('/api', apiRouter)
 
 //START THE SERVER
-app.listen(port)
-console.log('port running on ' + port)
+app.listen(config.port)
+console.log('port running on ' + config.port)
