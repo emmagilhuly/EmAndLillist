@@ -1,4 +1,4 @@
-angular.module('emAndLilApp', ['ngAnimate', 'app-routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
+angular.module('emAndLilApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
 
 //application config to integrate token into request
 .config(function($httpProvider){

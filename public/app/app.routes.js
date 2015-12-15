@@ -1,5 +1,5 @@
 //inject ngRoute for all our routing needs
-angular.module('app-routes', ['ngRoute'])
+angular.module('app.routes', ['ngRoute'])
 
 //configure our routes
 .config(function($routeProvider, $locationProvider){

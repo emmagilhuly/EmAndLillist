@@ -46,7 +46,7 @@ angular.module('authService', [])
 
   //return auth factory object
   return authFactory;
-});
+})
 
 // =========================================
 //factory for handling tokens
