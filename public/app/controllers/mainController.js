@@ -28,7 +28,7 @@ angular.module('mainCtrl', [])
 			self.processing = false;
 			//if a user successfully logs in, redirect to users page
 			if (data.success)
-				$location.path('/users')
+				$location.path('/users') // eventually want this to go to profile or items
 			else
 				self.error = data.message
 		});
