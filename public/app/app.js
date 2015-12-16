@@ -1,8 +1,9 @@
-angular.module('emAndLilApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
+angular.module('userApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
 
-//application config to integrate token into request
-.config(function($httpProvider){
+// application configuration to integrate token into requests
+.config(function($httpProvider) {
 
-  //attach our auth interceptor to the http requests
-  $httpProvider.interceptors.push('AuthInterceptor');
-})
+	// attach our auth interceptor to the http requests
+	$httpProvider.interceptors.push('AuthInterceptor');
+
+});

@@ -4,10 +4,11 @@
 </div>
 
 <form class="form-horizontal" ng-submit="user.saveUser()">
+
 	<div class="form-group">
 		<label class="col-sm-2 col-sm-offset-2 control-label">Name</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" ng-model="user.userData.name">
+			<input type="text" class="form-control"ng-model="user.userData.name">
 		</div>
 	</div>
 
@@ -25,16 +26,19 @@
 		</div>
 	</div>
 
+	<br><br>
+
 	<div class="form-group">
 	<div class="col-sm-offset-4 col-sm-4">
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'create'">Create User</button>
-		<button type="submit" class="btn btn-success btn-lg btn-block" ng-if="user.type == 'edit'">Update User</button>
+		<button type="submit" class="btn btn-block btn-primary" ng-if="user.type == 'create'">Create User</button>
+		<button type="submit" class="btn btn-block btn-primary" ng-if="user.type == 'edit'">Update User</button>
 	</div>
 	</div>
 </form>
 
 <div class="row show-hide-message" ng-show="user.message">
 	<div class="col-sm-6 col-sm-offset-2">
+
 		<div class="alert alert-info col-sm-offset-5 col-sm-2">
 			{{user.message}}
 		</div>
