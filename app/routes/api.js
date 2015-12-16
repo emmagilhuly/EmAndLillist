@@ -21,7 +21,7 @@ apiRouter.post('/authenticate', function(req, res){
 		//no user with that username was found
 		if (!user) {
 			res.json({success: false,
-				message: 'Authentication failed. User not found'
+				message: 'Authentication failed. User not found.'
 			});
 		} else if (user) {
 
@@ -69,7 +69,7 @@ apiRouter.route('/users')
 					return res.send(err);
 				}
 				//return a message
-				res.json({message: 'user created'})
+				res.json({message: 'User created'})
 		});
 	})
 
@@ -99,14 +99,14 @@ apiRouter.use(function(req, res, next){
 		//if there's no token, return HTTP response 403 (access forbidden) and error message
 		res.status(403).send({
 			success: false,
-			message: 'no token provided'
+			message: 'No token provided'
 		});
 	}
 })
 
 //test route to make sure everything is working, access at GET port/api
 apiRouter.get('/', function(req,res){
-	res.json({message: 'hooray! welcome to our api!'})
+	res.json({message: 'Hooray! Welcome to our API!'})
 })
 
 //on routes that end in /users
