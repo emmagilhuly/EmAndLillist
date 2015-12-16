@@ -21,7 +21,7 @@ apiRouter.post('/authenticate', function(req, res){
 		//no user with that username was found
 		if (!user) {
 			res.json({success: false,
-				message: 'Authentication failed. User not found'
+				message: 'Authentication failed. User not found.'
 			});
 		} else if (user) {
 
@@ -50,6 +50,29 @@ apiRouter.post('/authenticate', function(req, res){
 	});
 });
 
+apiRouter.route('/users')
+
+	//create a user accessed at POST port/users
+	.post(function(req,res){
+
+		var user = new User(); //create a new instance of the User model
+		user.name = req.body.name; //set the users name comes from the request
+		user.username = req.body.username; // set the user's username comes from the request
+		user.password = req.body.password;
+
+		user.save(function(err){
+			if (err){
+				//duplicate entry
+				if (err.code == 11000)
+					return res.json({success: false, message: 'A user with that username already exist'});
+				else
+					return res.send(err);
+				}
+				//return a message
+				res.json({message: 'User created'})
+		});
+	})
+
 //route middleware to verify token
 apiRouter.use(function(req, res, next){
 	//do logging
@@ -76,39 +99,18 @@ apiRouter.use(function(req, res, next){
 		//if there's no token, return HTTP response 403 (access forbidden) and error message
 		res.status(403).send({
 			success: false,
-			message: 'no token provided'
+			message: 'No token provided'
 		});
 	}
 })
 
 //test route to make sure everything is working, access at GET port/api
 apiRouter.get('/', function(req,res){
-	res.json({message: 'hooray! welcome to our api!'})
+	res.json({message: 'Hooray! Welcome to our API!'})
 })
 
 //on routes that end in /users
 apiRouter.route('/users')
-
-	//create a user accessed at POST port/users
-	.post(function(req,res){
-
-		var user = new User(); //create a new instance of the User model
-		user.name = req.body.name; //set the users name comes from the request
-		user.username = req.body.username; // set the user's username comes from the request
-		user.password = req.body.password;
-
-		user.save(function(err){
-			if (err){
-				//duplicate entry
-				if (err.code == 11000)
-					return res.json({success: false, message: 'A user with that username already exist'});
-				else
-					return res.send(err);
-				}
-				//return a message
-				res.json({message: 'user created'})
-		});
-	})
 
 	//get all the users accessed at port/api/users
 	.get(function(req, res){

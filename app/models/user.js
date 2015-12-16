@@ -10,6 +10,9 @@ var UserSchema = new Schema({
 	password: {type: String, required: true, select: false}
 })
 
+// 
+// createdBy:
+
 //hash password before user is saved
 UserSchema.pre('save', function(next){
 	var user = this;

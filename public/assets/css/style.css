@@ -1,10 +1,23 @@
-body {
-	padding-top: 50px;
+h1 {
+	text-align: center;
+}
+
+.signup {
+	text-align: center;
 }
 
 #content-views {
 	position: relative;
 }
+
+.ng-view {
+	padding-top: 40px;
+}
+
+.alert {
+	text-align: center;
+}
+
 
 .ng-leave {
 	width: 100%;
@@ -48,4 +61,3 @@ header .navbar {
 	-moz-animation:zoomIn 0.3s both ease;
 		animation: zoomIn 0.3s both ease;
 }
-
