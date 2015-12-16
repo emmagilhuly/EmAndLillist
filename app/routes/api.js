@@ -169,7 +169,7 @@ module.exports = function(app, express) {
 			item.description = req.body.description;
 			item.price = req.body.price;
 			item.picture = req.body.picture;
-
+			console.log("New item:", item)
 			item.save(function(err) {
 				if (err) throw err
 				// return a message
