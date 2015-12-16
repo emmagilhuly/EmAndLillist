@@ -10,8 +10,6 @@ angular.module('userCtrl', ['userService'])
 	// grab all the users at page load
 	User.all()
 		.success(function(data) {
-		.populate('items')
-
 			// when all the users come back, remove the processing variable
 			vm.processing = false;
 

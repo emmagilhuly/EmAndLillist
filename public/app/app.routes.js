@@ -42,7 +42,7 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userEditController',
 			controllerAs: 'user'
-		});
+		})
 
 		// show all items
 		.when('/items', {
