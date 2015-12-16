@@ -165,11 +165,11 @@ module.exports = function(app, express) {
 		.post(function(req, res) {
 
 			var item = new Item();		
-			item.name = req.body.item;  
+			item.name = req.body.name;  
 			item.description = req.body.description;  
 			item.price = req.body.price;  
 			item.picture = req.body.picture;  
-
+			console.log("New item:", item)
 			item.save(function(err) {
 				if (err) throw err 
 				// return a message
