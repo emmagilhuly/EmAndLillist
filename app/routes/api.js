@@ -164,14 +164,14 @@ module.exports = function(app, express) {
 		// create a item (accessed at POST http://localhost:8080/items)
 		.post(function(req, res) {
 
-			var item = new Item();		
-			item.name = req.body.item;  
-			item.description = req.body.description;  
-			item.price = req.body.price;  
-			item.picture = req.body.picture;  
+			var item = new Item();
+			item.name = req.body.item;
+			item.description = req.body.description;
+			item.price = req.body.price;
+			item.picture = req.body.picture;
 
 			item.save(function(err) {
-				if (err) throw err 
+				if (err) throw err
 				// return a message
 				res.json({ message: 'Item created!' });
 			});
@@ -278,6 +278,3 @@ module.exports = function(app, express) {
 
 	return apiRouter;
 };
-
-
-
