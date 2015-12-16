@@ -6,7 +6,9 @@ var bcrypt 		 = require('bcrypt-nodejs');
 var UserSchema   = new Schema({
 	name: String,
 	username: { type: String, required: true, index: { unique: true }},
-	password: { type: String, required: true, select: false }
+	password: { type: String, required: true, select: false },
+	items: [{type: Schema.Types.ObjectId, ref: 'Item'}],
+
 });
 
 // hash the password before the user is saved
@@ -32,5 +34,22 @@ UserSchema.methods.comparePassword = function(password) {
 
 	return bcrypt.compareSync(password, user.password);
 };
+
+UserSchema.methods.addItems=function(item){
+  var user = this;
+  console.log('======USER=====',user)
+  user.items.push(item)
+  user.name.push(item.name)
+  user.description.push(item.description)
+  user.price.push(item.price)
+  user.picture.push(item.picture)
+  user.save(function(err, user){
+    if (err) console.log(err)
+    console.log(user)
+    return
+  })
+  console.log('====ITEM===',item)
+}
+
 
 module.exports = mongoose.model('User', UserSchema);
