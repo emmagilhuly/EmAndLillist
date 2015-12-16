@@ -59,6 +59,31 @@ module.exports = function(app, express) {
 	  });
 	});
 
+	apiRouter.route('/users')
+
+		// create a user (accessed at POST http://localhost:8080/users)
+		.post(function(req, res) {
+
+			var user = new User();		// create a new instance of the User model
+			user.name = req.body.name;  // set the users name (comes from the request)
+			user.username = req.body.username;  // set the users username (comes from the request)
+			user.password = req.body.password;  // set the users password (comes from the request)
+
+			user.save(function(err) {
+				if (err) {
+					// duplicate entry
+					if (err.code == 11000)
+						return res.json({ success: false, message: 'A user with that username already exists. '});
+					else
+						return res.send(err);
+				}
+
+				// return a message
+				res.json({ message: 'User created!' });
+			});
+
+		})
+
 	// route middleware to verify a token
 	apiRouter.use(function(req, res, next) {
 		// do logging
@@ -107,29 +132,6 @@ module.exports = function(app, express) {
 	// on routes that end in /users
 	// ----------------------------------------------------
 	apiRouter.route('/users')
-
-		// create a user (accessed at POST http://localhost:8080/users)
-		.post(function(req, res) {
-
-			var user = new User();		// create a new instance of the User model
-			user.name = req.body.name;  // set the users name (comes from the request)
-			user.username = req.body.username;  // set the users username (comes from the request)
-			user.password = req.body.password;  // set the users password (comes from the request)
-
-			user.save(function(err) {
-				if (err) {
-					// duplicate entry
-					if (err.code == 11000)
-						return res.json({ success: false, message: 'A user with that username already exists. '});
-					else
-						return res.send(err);
-				}
-
-				// return a message
-				res.json({ message: 'User created!' });
-			});
-
-		})
 
 		// get all the users (accessed at GET http://localhost:8080/api/users)
 		.get(function(req, res) {

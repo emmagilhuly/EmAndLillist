@@ -31,6 +31,13 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'user'
 		})
 
+		.when('/signup', {
+			templateUrl: 'app/views/pages/signup.html',
+			controller: 'userCreateController',
+			controllerAs: 'user'
+		})
+
+
 		// page to edit a user
 		.when('/users/:user_id', {
 			templateUrl: 'app/views/pages/users/single.html',
