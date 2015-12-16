@@ -37,13 +37,34 @@ angular.module('app.routes', ['ngRoute'])
 			controllerAs: 'user'
 		})
 
-
 		// page to edit a user
 		.when('/users/:user_id', {
 			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userEditController',
 			controllerAs: 'user'
+		})
+
+		// show all items
+		.when('/items', {
+			templateUrl: 'app/views/pages/items/allItems.html',
+			controller: 'itemController',
+			controllerAs: 'item'
+		})
+
+		// form to create a new item
+		.when('/items/create', {
+			templateUrl: 'app/views/pages/items/new.html',
+			controller: 'itemCreateController',
+			controllerAs: 'item'
+		})
+
+		// page to edit a item
+		.when('/items/:item_id', {
+			templateUrl: 'app/views/pages/items/new.html',
+			controller: 'itemEditController',
+			controllerAs: 'item'
 		});
+
 
 	$locationProvider.html5Mode(true);
 

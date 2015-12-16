@@ -1,5 +1,6 @@
 var bodyParser = require('body-parser'); 	// get body-parser
 var User       = require('../models/user');
+var Item       = require('../models/item');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -81,8 +82,21 @@ module.exports = function(app, express) {
 				// return a message
 				res.json({ message: 'User created!' });
 			});
-
 		})
+
+		apiRouter.route('/items')
+
+		// get all the items (accessed at GET http://localhost:8080/api/items)
+		.get(function(req, res) {
+
+			Item.find({}, function(err, items) {
+				if (err) res.send(err);
+
+				// return the users
+				res.json(items);
+			});
+		});
+
 
 	// route middleware to verify a token
 	apiRouter.use(function(req, res, next) {
@@ -144,6 +158,26 @@ module.exports = function(app, express) {
 			});
 		});
 
+
+	apiRouter.route('/items/create')
+
+		// create a item (accessed at POST http://localhost:8080/items)
+		.post(function(req, res) {
+
+			var item = new Item();		
+			item.name = req.body.item;  
+			item.description = req.body.description;  
+			item.price = req.body.price;  
+			item.picture = req.body.picture;  
+
+			item.save(function(err) {
+				if (err) throw err 
+				// return a message
+				res.json({ message: 'Item created!' });
+			});
+		})
+
+
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
 	apiRouter.route('/users/:user_id')
@@ -196,5 +230,54 @@ module.exports = function(app, express) {
 		res.send(req.decoded);
 	});
 
+	apiRouter.route('/items/:item_id')
+
+		// get the item with that id
+		.get(function(req, res) {
+			Item.findById(req.params.item_id, function(err, item) {
+				if (err) res.send(err);
+
+				// return that item
+				res.json(item);
+			});
+		})
+
+		// update the item with this id
+		.put(function(req, res) {
+			Item.findById(req.params.item_id, function(err, item) {
+
+				if (err) res.send(err);
+
+				// set the new item information if it exists in the request
+				if (req.body.name) item.name = req.body.name;
+				if (req.body.description) item.description = req.body.description;
+				if (req.body.price) item.price = req.body.price;
+				if (req.body.picture) item.picture = req.body.picture;
+
+				// save the item
+				item.save(function(err) {
+					if (err) res.send(err);
+
+					// return a message
+					res.json({ message: 'Item updated!' });
+				});
+
+			});
+		})
+
+		//delete the item with this id
+		.delete(function(req, res){
+			Item.remove({
+				_id: req.params.item_id
+			}, function (err, item) {
+				if (err) res.send(err);
+
+				res.json({message: 'Item successfully deleted'})
+			});
+		});
+
 	return apiRouter;
 };
+
+
+
