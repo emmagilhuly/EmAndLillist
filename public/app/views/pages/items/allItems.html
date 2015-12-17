@@ -35,7 +35,7 @@
 			<td>{{ product.description }}</td>
 			<td>{{ product.price }}</td>
 			<td>{{ product.picture }}</td>
-			<td>{{ product.user}}</td>
+			<td>{{ product._creator.username}}</td>
 			<td class="col-sm-2">
 				<a ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>
 				<a href="#" ng-click="item.deleteItem(product._id)" class="btn btn-primary">Delete Item</a>
