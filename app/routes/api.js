@@ -165,7 +165,7 @@ module.exports = function(app, express) {
 		});
 
 
-	apiRouter.route('/items/create')
+	apiRouter.route('/items')
 
 		// create a item (accessed at POST http://localhost:8080/items)
 		.post(function(req, res) {
@@ -212,6 +212,7 @@ module.exports = function(app, express) {
 				if (req.body.name) user.name = req.body.name;
 				if (req.body.username) user.username = req.body.username;
 				if (req.body.password) user.password = req.body.password;
+				if (req.body.item) user.addItems(req.body.item);
 
 				// save the user
 				user.save(function(err) {
@@ -287,6 +288,18 @@ module.exports = function(app, express) {
 				res.json({message: 'Item successfully deleted'})
 			});
 		});
+
+apiRouter.post('/addItemsToUser',function(req,res){
+	User.findById(req.token.id,function(err,user){
+		user.addItems(req.body.item)
+		user.save(function (err,user) {
+			res.json(user)
+		})
+	})
+
+})
+
+
 
 	return apiRouter;
 };
