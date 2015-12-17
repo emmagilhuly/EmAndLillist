@@ -170,19 +170,31 @@ module.exports = function(app, express) {
 		// create a item (accessed at POST http://localhost:8080/items)
 		.post(function(req, res) {
 
-			var item = new Item();
-			item.name = req.body.name;
-			item.description = req.body.description;
-			item.price = req.body.price;
-			item.picture = req.body.picture;
-			item._creator = req.body.creator;
-			console.log("New item:", item)
-			item.save(function(err) {
-				if (err) throw err
+			var newItem = new Item();
+			newItem.name = req.body.name;
+			newItem.description = req.body.description;
+			newItem.price = req.body.price;
+			newItem.picture = req.body.picture;
+			newItem._creator = req.body.creator;
+			console.log("New item:", newItem)
+
+			newItem.save(function(err) {
+				if (err) res.send (err)
 				// return a message
 				res.json({ message: 'Item created!' });
 			});
-		})
+
+			User.findById(req.body.creator, function(err, user){
+				console.log("HELLOW THIS IS " + Object.keys(req.body))
+				if (err) res.send (err)
+				console.log(newItem)
+				user.items.push(newItem)
+				user.save(function(err){
+						if (err) res.send(err);
+				})
+			})
+
+		});
 
 
 	// on routes that end in /users/:user_id
@@ -289,17 +301,15 @@ module.exports = function(app, express) {
 			});
 		});
 
-apiRouter.post('/addItemsToUser',function(req,res){
-	User.findById(req.token.id,function(err,user){
-		user.addItems(req.body.item)
-		user.save(function (err,user) {
-			res.json(user)
-		})
-	})
-
-})
-
-
+// apiRouter.post('/addItemsToUser',function(req,res){
+// 	User.findById(req.token.id,function(err,user){
+// 		user.addItems(req.body.item)
+// 		user.save(function (err,user) {
+// 			res.json(user)
+// 		})
+// 	})
+//
+// })
 
 	return apiRouter;
 };
