@@ -7,6 +7,7 @@ var itemSchema = new Schema({
   description: {type: String, required: true},
   price: {type: Number, required: true},
   picture: {type: String},
+  date: {type: Date},
   _creator: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
