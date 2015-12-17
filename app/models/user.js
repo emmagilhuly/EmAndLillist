@@ -7,7 +7,7 @@ var UserSchema   = new Schema({
 	name: String,
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
-	items: [{type: Schema.Types.ObjectId, ref: 'Item'}],
+	items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
 
 });
 
