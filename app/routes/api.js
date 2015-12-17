@@ -175,6 +175,7 @@ module.exports = function(app, express) {
 			newItem.description = req.body.description;
 			newItem.price = req.body.price;
 			newItem.picture = req.body.picture;
+			newItem.date = new Date()
 			newItem._creator = req.body.creator;
 			console.log("New item:", newItem)
 
@@ -278,6 +279,7 @@ module.exports = function(app, express) {
 				if (req.body.description) item.description = req.body.description;
 				if (req.body.price) item.price = req.body.price;
 				if (req.body.picture) item.picture = req.body.picture;
+				if (req.body.date) item.date = req.body.date;
 
 				// save the item
 				item.save(function(err) {
