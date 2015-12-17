@@ -28,6 +28,16 @@ h1 {
 
 header .navbar {
 	border-radius: 0;
+	background-color: gray;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+
 }
 
 /*login page*/
