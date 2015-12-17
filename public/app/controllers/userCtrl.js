@@ -39,7 +39,7 @@ angular.module('userCtrl', ['userService'])
 })
 
 // controller applied to user creation page
-.controller('userCreateController', function(User) {
+.controller('userCreateController', function($location, User, Auth) {
 
 	var vm = this;
 
@@ -56,9 +56,21 @@ angular.module('userCtrl', ['userService'])
 		User.create(vm.userData)
 			.success(function(data) {
 				vm.processing = false;
-				vm.userData = {};
 				vm.message = data.message;
+				Auth.login(vm.userData.username, vm.userData.password)
+					.success(function(data) {
+						vm.processing = false;
+						vm.userData = {};
+						// if a user successfully logs in, redirect to users page
+						if (data.success)
+							$location.path('/items');
+						else
+							vm.error = data.message;
+
+					});
 			});
+
+			// $location.path('/items');
 
 	};
 

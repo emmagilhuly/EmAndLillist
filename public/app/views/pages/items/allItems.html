@@ -3,7 +3,7 @@
 		Items
 		<a href="/items/create" class="btn btn-default" ng-if="main.loggedIn">
 			<span class="glyphicon glyphicon-plus"></span>
-			New Item
+			Sell a New Item
 		</a>
 	</h1>
 
@@ -22,6 +22,7 @@
 			<th>Description</th>
 			<th>Price</th>
 			<th>Picture</th>
+			<th>Seller</th>
 			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
@@ -32,6 +33,7 @@
 			<td>{{ product.description }}</td>
 			<td>{{ product.price }}</td>
 			<td>{{ product.picture }}</td>
+			<td>{{ product.user}}</td>
 			<td class="col-sm-2">
 				<a ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>
 				<a href="#" ng-click="item.deleteItem(product._id)" class="btn btn-primary">Delete Item</a>
