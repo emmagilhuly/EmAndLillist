@@ -20,6 +20,7 @@ angular.module('itemCtrl', ['itemService'])
 
 	// function to delete a item
 	vm.deleteItem = function(id) {
+		console.log("delete button is hitting")
 		vm.processing = true;
 
 		Item.delete(id)
