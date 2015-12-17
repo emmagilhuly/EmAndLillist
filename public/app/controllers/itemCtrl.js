@@ -40,7 +40,7 @@ angular.module('itemCtrl', ['itemService'])
 })
 
 // controller applied to item creation page
-.controller('itemCreateController', function(Item) {
+.controller('itemCreateController', function(Item, $location) {
 
 	var vm = this;
 
@@ -60,6 +60,8 @@ angular.module('itemCtrl', ['itemService'])
 				vm.itemData = {};
 				vm.message = data.message;
 			});
+			$location.path('/items');
+			
 	};
 
 })
