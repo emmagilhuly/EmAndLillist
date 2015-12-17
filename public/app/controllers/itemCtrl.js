@@ -60,7 +60,6 @@ angular.module('itemCtrl', ['itemService'])
 				vm.itemData = {};
 				vm.message = data.message;
 			});
-
 	};
 
 })
@@ -87,15 +86,20 @@ angular.module('itemCtrl', ['itemService'])
 		vm.message = '';
 
 		// call the itemService function to update
-		Item.update($routeParams.item_id, vm.itemData)
+		Item.update($routeParams.item_id, vm.itemData, $location)
 			.success(function(data) {
 				vm.processing = false;
 
 				// clear the form
 				vm.itemData = {};
+				if (data.success)
+					$location.path('/items')
+				else
+					vm.error = data.message
 
 				// bind the message from our API to vm.message
 				vm.message = data.message;
+
 			});
 	};
 
