@@ -1,4 +1,4 @@
-<div="usersitems" ng-if="main.loggedIn" ng-controller="mainController as main">>
+<div="usersitems" ng-if="main.loggedIn" ng-controller="mainController as main">
 
 <div class="page-header">
 	<h1>
@@ -10,7 +10,7 @@
 	</h1>
 
 </div>
-<!-- 
+<!--
 <div class="jumbotron text-center" ng-show="item.processing">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
 	<p>Loading Items...</p>
@@ -59,7 +59,7 @@
 		</div>
 	  <div class="card-deck row">
 	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy:product | filter: filterSearch">
-	      <img class="card-img-top" data-src="..." alt="Card image cap">{{product.image}}
+	      <img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
 	      <div class="card-block">
 	        <h5 class="card-title">Name: {{ product.name }}</h5>
 	        <p class="card-text">by: {{product._creator.username}}</p>
@@ -67,6 +67,8 @@
 	        <p class="card-text">{{product.description}}</p>
 	        <p class="card-text"><small class="text-muted">{{product.date}}</small></p>
 		    <a href="#" class="btn btn-primary">Add to Cart</a>
+				<a ng-if="main.loggedIn" ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>
+				<a ng-if="main.loggedIn" href="#" ng-click="item.deleteItem(product._id)" class="btn btn-primary">Delete Item</a>
 	      </div>
 	    </div>
 	  </div>
