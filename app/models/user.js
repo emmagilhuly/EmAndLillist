@@ -34,10 +34,10 @@ UserSchema.methods.comparePassword = function(password) {
 	return bcrypt.compareSync(password, user.password);
 };
 
-UserSchema.methods.addItems = function(item){
-	var user = this;
-	user.items.push(item)
-	user.save
-}
+// UserSchema.methods.addItems = function(item){
+// 	var user = this;
+// 	user.items.push(item)
+// 	user.save
+// }
 
 module.exports = mongoose.model('User', UserSchema);
