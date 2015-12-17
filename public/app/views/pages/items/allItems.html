@@ -47,9 +47,9 @@
 </table> -->
 
 
-<div class="card-group" ng-show="item.items">
+<div class="card-group row" ng-show="item.items">
   <div class="card-deck">
-    <div class="card" ng-repeat="product in item.items">
+    <div class="card col-md-4" ng-repeat="product in item.items">
       <img class="card-img-top" data-src="..." alt="Card image cap">{{product.image}}
       <div class="card-block">
         <h4 class="card-title">Name: {{ product.name }}</h4>
