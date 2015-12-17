@@ -3,12 +3,11 @@ var Schema       = mongoose.Schema;
 var bcrypt 		 = require('bcrypt-nodejs');
 
 // user schema
-var UserSchema   = new Schema({
+var UserSchema = new Schema({
 	name: String,
 	username: { type: String, required: true, index: { unique: true }},
 	password: { type: String, required: true, select: false },
 	items: [{type: Schema.Types.ObjectId, ref: 'Item'}]
-
 });
 
 // hash the password before the user is saved
