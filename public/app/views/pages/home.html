@@ -49,8 +49,8 @@
 
 <div class="card-group row" ng-show="item.items">
   <div class="card-deck">
-    <div class="card col-md-4" ng-repeat="product in item.items">
-      <img class="card-img-top" data-src="..." alt="Card image cap">{{product.image}}
+		<div class="card col-md-4" ng-repeat="product in item.items | orderBy:product | filter: filterSearch">
+			<img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
       <div class="card-block">
         <h4 class="card-title">Name: {{ product.name }}</h4>
         <p class="card-text">Seller: {{product._creator.username}}</p>
