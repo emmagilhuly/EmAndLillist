@@ -7,7 +7,7 @@ var itemSchema = new Schema({
   description: {type: String, required: true},
   price: {type: Number, required: true},
   picture: {type: String},
-  user: {type: Schema.Types.ObjectId, ref: 'User'}
+  _creator: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 var Item = mongoose.model('Item', itemSchema);

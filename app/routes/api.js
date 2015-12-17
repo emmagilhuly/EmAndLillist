@@ -89,7 +89,10 @@ module.exports = function(app, express) {
 		// get all the items (accessed at GET http://localhost:8080/api/items)
 		.get(function(req, res) {
 
-			Item.find({}, function(err, items) {
+			Item
+			.find({})
+			.populate('_creator')
+			.exec(function(err, items) {
 				if (err) res.send(err);
 
 				// return the users
@@ -150,7 +153,10 @@ module.exports = function(app, express) {
 		// get all the users (accessed at GET http://localhost:8080/api/users)
 		.get(function(req, res) {
 
-			User.find({}, function(err, users) {
+			User
+			.find({})
+			.populate('items')
+			.exec(function(err, users) {
 				if (err) res.send(err);
 
 				// return the users
@@ -159,7 +165,7 @@ module.exports = function(app, express) {
 		});
 
 
-	apiRouter.route('/items/create')
+	apiRouter.route('/items')
 
 		// create a item (accessed at POST http://localhost:8080/items)
 		.post(function(req, res) {
@@ -169,6 +175,7 @@ module.exports = function(app, express) {
 			item.description = req.body.description;
 			item.price = req.body.price;
 			item.picture = req.body.picture;
+			item._creator = req.body.creator;
 			console.log("New item:", item)
 			item.save(function(err) {
 				if (err) throw err
@@ -184,7 +191,10 @@ module.exports = function(app, express) {
 
 		// get the user with that id
 		.get(function(req, res) {
-			User.findById(req.params.user_id, function(err, user) {
+			User
+			.findById(req.params.user_id)
+			.populate('items')
+			.exec(function(err, user) {
 				if (err) res.send(err);
 
 				// return that user
@@ -202,6 +212,7 @@ module.exports = function(app, express) {
 				if (req.body.name) user.name = req.body.name;
 				if (req.body.username) user.username = req.body.username;
 				if (req.body.password) user.password = req.body.password;
+				if (req.body.item) user.addItems(req.body.item);
 
 				// save the user
 				user.save(function(err) {
@@ -234,7 +245,9 @@ module.exports = function(app, express) {
 
 		// get the item with that id
 		.get(function(req, res) {
-			Item.findById(req.params.item_id, function(err, item) {
+			Item.findById(req.params.item_id)
+				.populate('_creator')
+				.exec(function(err, item) {
 				if (err) res.send(err);
 
 				// return that item
@@ -275,6 +288,18 @@ module.exports = function(app, express) {
 				res.json({message: 'Item successfully deleted'})
 			});
 		});
+
+apiRouter.post('/addItemsToUser',function(req,res){
+	User.findById(req.token.id,function(err,user){
+		user.addItems(req.body.item)
+		user.save(function (err,user) {
+			res.json(user)
+		})
+	})
+
+})
+
+
 
 	return apiRouter;
 };
