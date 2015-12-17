@@ -1,5 +1,9 @@
-h1 {
-	text-align: center;
+h5 {
+	margin: 0;
+}
+
+.card-text {
+	margin-top: 0px;
 }
 
 .signup {
