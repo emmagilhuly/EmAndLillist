@@ -43,11 +43,10 @@
 			<a href="/" class="navbar-brand"><span class="glyphicon glyphicon-fire text-danger"></span> Em and Lil List</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
+			<li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
 			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
-      <li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
-			<li ng-if="main.loggedIn" class="navbar-text">Hello {{ main.user.username }}!</li>
       <li ng-if="main.loggedIn"><a href="/users">Users</a></li>
-			<li ng-if="main.loggedIn"><a href="/items"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+			<li ng-if="main.loggedIn"><a href="/items"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 		</ul>
 	</div>

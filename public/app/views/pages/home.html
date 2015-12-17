@@ -1,15 +1,38 @@
-<div class="jumbotron text-center">
-  <h1> Em and Lil List</h1>
+<div class="page-header">
+	<h1>
+		Items
+		<a href="/items/create" class="btn btn-default" ng-if="main.loggedIn">
+			<span class="glyphicon glyphicon-plus"></span>
+			Sell a New Item
+		</a>
+	</h1>
 
-  <div ng-if="!main.loggedIn">
-    <p> Login to buy and sell used items.</p>
-    <a href="/login" class="btn btn-primary">Login</a>
-    <a href="/signup" class="btn btn-primary">Signup</a>
-  </div>
-
-  <div ng-if="main.loggedIn">
-    <p> Manage your users.</p>
-    <a href="/users" class="btn btn-primary">View Users</a>
-    <a href="/items" class="btn btn-primary">View Items</a>
-  </div>
 </div>
+
+<div class="jumbotron text-center" ng-show="item.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Items...</p>
+</div>
+
+<table class="table table-bordered table-striped" ng-show="item.items">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Picture</th>
+			<th>Seller</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="product in item.items">
+			<td>{{ product._id }}</td>
+			<td>{{ product.name }}</td>
+			<td>{{ product.description }}</td>
+			<td>{{ product.price }}</td>
+			<td>{{ product.picture }}</td>
+			<td>{{ product.user}}</td>
+		</tr>
+	</tbody>
+</table>
