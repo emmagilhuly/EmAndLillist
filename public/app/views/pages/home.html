@@ -1,3 +1,5 @@
+<div="usersitems" ng-if="main.loggedIn">
+
 <div class="page-header">
 	<h1>
 		Items
@@ -8,13 +10,13 @@
 	</h1>
 
 </div>
-
+<!--
 <div class="jumbotron text-center" ng-show="item.processing">
 	<span class="glyphicon glyphicon-repeat spinner"></span>
 	<p>Loading Items...</p>
 </div>
 
-<table class="table table-bordered table-striped" ng-show="item.items">
+<table class="card-deck" ng-show="item.items">
 	<thead>
 		<tr>
 			<th>_id</th>
@@ -22,7 +24,9 @@
 			<th>Description</th>
 			<th>Price</th>
 			<th>Picture</th>
+			<th>Date</th>
 			<th>Seller</th>
+			<th class="col-sm-2"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,9 +34,33 @@
 			<td>{{ product._id }}</td>
 			<td>{{ product.name }}</td>
 			<td>{{ product.description }}</td>
-			<td>{{ product.price }}</td>
+			<td>${{ product.price }}</td>
 			<td>{{ product.picture }}</td>
-			<td>{{ product.user}}</td>
+			<td>{{ product.date }}</td>
+			<td>{{ product._creator.username}}</td>
+			<td class="col-sm-2">
+				<a ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>
+				<a href="#" ng-click="item.deleteItem(product._id)" class="btn btn-primary">Delete Item</a>
+			</td>
 		</tr>
 	</tbody>
-</table>
+</table> -->
+
+
+<div class="card-group row" ng-show="item.items">
+  <div class="card-deck">
+    <div class="card col-md-4" ng-repeat="product in item.items">
+      <img class="card-img-top" data-src="..." alt="Card image cap">{{product.image}}
+      <div class="card-block">
+        <h4 class="card-title">Name: {{ product.name }}</h4>
+        <p class="card-text">Seller: {{product._creator.username}}</p>
+        <p class="card-text">Price: ${{product.price}}</p>
+        <p class="card-text">Description: {{product.description}}</p>
+        <p class="card-text"><small class="text-muted">{{product.date}}</small></p>
+	    <a href="#" class="btn btn-primary">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

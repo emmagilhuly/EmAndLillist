@@ -42,7 +42,8 @@ module.exports = function(app, express) {
 	        // create a token
 	        var token = jwt.sign({
 	        	name: user.name,
-	        	username: user.username
+	        	username: user.username,
+						id: user._id
 	        }, superSecret, {
 	          expiresInMinutes: 1440 // expires in 24 hours
 	        });
@@ -176,24 +177,25 @@ module.exports = function(app, express) {
 			newItem.price = req.body.price;
 			newItem.picture = req.body.picture;
 			newItem.date = new Date()
-			newItem._creator = req.body.creator;
+			newItem._creator = req.decoded.id;
 			console.log("New item:", newItem)
 
 			newItem.save(function(err) {
 				if (err) res.send (err)
 				// return a message
+				console.log('---ID--',req.decoded.id);
+				User.findById(req.decoded.id, function(err, user){
+					console.log("HELLO THIS IS " + " " + Object.keys(req.body) + " ")
+					if (err) res.send (err)
+					console.log(newItem)
+					user.items.push(newItem)
+					user.save(function(err){
+						if (err) res.send(err);
+					})
+				})
 				res.json({ message: 'Item created!' });
 			});
 
-			User.findById(req.body.creator, function(err, user){
-				console.log("HELLO THIS IS " + " " + Object.keys(req.body) + " ")
-				if (err) res.send (err)
-				console.log(newItem)
-				user.items.push(newItem)
-				user.save(function(err){
-						if (err) res.send(err);
-				})
-			})
 
 		});
 
