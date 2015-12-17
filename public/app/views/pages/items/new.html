@@ -1,3 +1,5 @@
+<div class="new-item" ng-if="main.loggedIn">
+
 <div class="page-header">
 	<h1 ng-if="item.type == 'create'">Create Item</h1>
 	<h1 ng-if="item.type == 'edit'">Edit Item</h1>
@@ -51,4 +53,6 @@
 			{{item.message}}
 		</div>
 	</div>
+</div>
+
 </div>

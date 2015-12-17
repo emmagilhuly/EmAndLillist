@@ -1,7 +1,7 @@
 <div class="page-header">
 	<h1>
 		Items
-		<a href="/items/create" class="btn btn-default">
+		<a href="/items/create" class="btn btn-default" ng-if="main.loggedIn">
 			<span class="glyphicon glyphicon-plus"></span>
 			New Item
 		</a>
@@ -34,7 +34,7 @@
 			<td>{{ item.picture }}</td>
 			<td class="col-sm-2">
 				<a ng-href="/items/{{ item._id }}" class="btn btn-danger">Edit Item</a>
-				<a href="#" ng-click="item.deleteItem(item._id)" class="btn btn-primary">Delete Item</a>
+				<a href="#" ng-click="items.deleteItem(item._id)" class="btn btn-primary">Delete Item</a>
 			</td>
 		</tr>
 	</tbody>
