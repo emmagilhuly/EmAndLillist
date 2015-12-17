@@ -30,6 +30,10 @@ h5 {
 		animation: zoomOutDown 0.5s both ease-in;
 }
 
+.card-img-top{
+	max-width: 200px;
+}
+
 header .navbar {
 	border-radius: 0;
 	background-color: gray;
