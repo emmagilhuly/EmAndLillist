@@ -24,6 +24,7 @@
 			<th>Description</th>
 			<th>Price</th>
 			<th>Picture</th>
+			<th>Date</th>
 			<th>Seller</th>
 			<th class="col-sm-2"></th>
 		</tr>
@@ -33,8 +34,9 @@
 			<td>{{ product._id }}</td>
 			<td>{{ product.name }}</td>
 			<td>{{ product.description }}</td>
-			<td>{{ product.price }}</td>
+			<td>${{ product.price }}</td>
 			<td>{{ product.picture }}</td>
+			<td>{{ product.date }}</td>
 			<td>{{ product._creator.username}}</td>
 			<td class="col-sm-2">
 				<a ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>

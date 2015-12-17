@@ -186,7 +186,7 @@ module.exports = function(app, express) {
 			});
 
 			User.findById(req.body.creator, function(err, user){
-				console.log("HELLOW THIS IS " + Object.keys(req.body))
+				console.log("HELLO THIS IS " + " " + Object.keys(req.body) + " ")
 				if (err) res.send (err)
 				console.log(newItem)
 				user.items.push(newItem)
