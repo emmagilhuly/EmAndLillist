@@ -1,3 +1,4 @@
+<div class="single" ng-if="main.loggedIn">
 <div class="page-header">
 	<h1 ng-if="user.type == 'create'">Create User</h1>
 	<h1 ng-if="user.type == 'edit'">Edit User</h1>
@@ -43,4 +44,6 @@
 			{{user.message}}
 		</div>
 	</div>
+</div>
+
 </div>
