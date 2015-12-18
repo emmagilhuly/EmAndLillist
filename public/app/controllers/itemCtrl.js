@@ -1,6 +1,6 @@
 angular.module('itemCtrl', ['itemService', 'authService'])
 
-.controller('itemController', function(Item, Auth) {
+.controller('itemController', function(Item, $location, Auth ) {
 
 	var vm = this;
 
@@ -73,7 +73,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 })
 
 // controller applied to item edit page
-.controller('itemEditController', function($routeParams, Item) {
+.controller('itemEditController', function($routeParams, $location, Item) {
 
 	var vm = this;
 
@@ -90,6 +90,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 
 	// function to save the item
 	vm.saveItem = function() {
+		console.log('click')
 		vm.processing = true;
 		vm.message = '';
 
@@ -97,7 +98,6 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 		Item.update($routeParams.item_id, vm.itemData, $location)
 			.success(function(data) {
 				vm.processing = false;
-
 				// clear the form
 				vm.itemData = {};
 				if (data.success)

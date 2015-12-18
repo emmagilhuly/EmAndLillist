@@ -42,11 +42,11 @@
 		<div class="navbar-header">
 			<a href="/" class="navbar-brand"> Em and Lil List</a>
 		</div>
-		<ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right" >
 			<li ng-if="!main.loggedIn"><a href="/signup">Signup</a></li>
 			<li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
 			<li ng-if="main.loggedIn"><a href="/items">My Items</a></li>
-			<li ng-if="main.loggedIn"><a ng-href="/users"> My Settings</a></li>
+			<li ng-if="main.loggedIn"><a ng-href="/users/{{main.user.id}}"> My Settings</a></li>
 			<li ng-if="main.loggedIn"><a href="/checkout"><span class="glyphicon glyphicon-shopping-cart"></span> Checkout</a></li>
 			<li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
 		</ul>
