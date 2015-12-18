@@ -15,7 +15,7 @@
 	<div class="card-group" ng-show="item.items">
 
 	  <div class="card-deck row">
-	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy:product | filter: filterSearch">
+	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch">
 	      <div class="card-block">
 		    <img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
 	        <h5 class="card-title">{{ product.name }}</h5>
