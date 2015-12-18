@@ -3,7 +3,21 @@ h5 {
 }
 
 .card-text {
-	margin-top: 0px;
+	margin: 0px;
+}
+
+
+
+.contactButton {
+	color: blue;
+}
+
+.editButton {
+	color: green;
+}
+
+.deleteButton {
+	color: red;
 }
 
 .signup {
@@ -31,7 +45,7 @@ h5 {
 }
 
 .card-img-top{
-	max-width: 200px;
+	max-width: 192px;
 }
 
 header .navbar {
