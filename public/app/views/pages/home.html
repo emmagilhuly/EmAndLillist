@@ -1,12 +1,13 @@
 <div class="page-header">
-<h1> Featured Products</h1>
+<h2> Em and Lil List </h2>
 
-<form role="search">
+<form role="search" id="searchform">
 	<div class="form-group col-sm-4">
-			<input type="text" class="form-control" ng-model="filterSearch" placeholder="Search Items">
+			<input type="text" class="form-control" ng-model="filterSearch" placeholder="Search for a used item">
 	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
 </form>
+<ul>
 </div>
 
 <!-- <div class="card-group row" ng-show="item.items">
@@ -31,16 +32,18 @@
 	<div class="card-deck row">
 		<div class="card col-md-4" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch">
 			<div class="card-block">
-			<img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
-			<h5 class="card-title">{{ product.name }}</h5>
-			<p class="card-text">by: {{product._creator.username}}</p>
-			<a ng-if="main.loggedIn" href="#" class="contactButton">Contact Seller</a>
-			<p class="card-text"><small class="text-muted">Date Posted: {{product.date | date:"MM/dd/yyyy"}}</small></p>
-				<p class="card-text">{{product.description}}</p>
-				<p class="card-text" id="price">${{product.price}}</p>
-			<a href="/login" class="btn btn-primary">Add to Cart</a>
-			<br><a ng-if="product._creator == item.user"  ng-href="/items/{{ product._id }}" class="editButton">Edit Item</a>
-			<br><a ng-if="product._creator == item.user" href="#" ng-click="item.deleteItem(product._id)" class="deleteButton">Delete Item</a>
+				<div class="middle">
+					<img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
+					<h5 class="card-title">{{ product.name }}</h5>
+					<p class="card-text">by: {{product._creator.username}}</p>
+					<a ng-if="main.loggedIn" href="#" class="contactButton">Contact Seller</a>
+					<p class="card-text"><small class="text-muted">Date Posted: {{product.date | date:"MM/dd/yyyy"}}</small></p>
+						<p class="card-text">{{product.description}}</p>
+						<p class="card-text" id="price">${{product.price}}</p>
+					<a href="/login" class="btn btn-primary">Add to Cart</a>
+					<br><a ng-if="product._creator == item.user"  ng-href="/items/{{ product._id }}" class="editButton">Edit Item</a>
+					<br><a ng-if="product._creator == item.user" href="#" ng-click="item.deleteItem(product._id)" class="deleteButton">Delete Item</a>
+			</div>
 			</div>
 		</div>
 	</div>
