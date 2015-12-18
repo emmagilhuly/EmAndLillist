@@ -1,6 +1,6 @@
 <div class="new-item" ng-if="main.loggedIn">
 
-<div class="page-header">
+<div class="page-header" id="signup">
 	<h1 ng-if="item.type == 'create'">Create Item</h1>
 	<h1 ng-if="item.type == 'edit'">Edit Item</h1>
 </div>
@@ -49,7 +49,7 @@
 <div class="row show-hide-message" ng-show="item.message">
 	<div class="col-sm-6 col-sm-offset-2">
 
-		<div class="alert alert-info col-sm-offset-5 col-sm-2">
+		<div class="alert alert-info col-sm-offset-4 col-sm-4">
 			{{item.message}}
 		</div>
 	</div>
