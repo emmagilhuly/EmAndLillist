@@ -1,9 +1,58 @@
+body {
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h2 {
+	margin-bottom: 10px;
+	text-align: center
+}
+
+h4 {
+	text-align: center;
+	font-size: 20px
+}
+
 h5 {
-	margin: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-size: 25px;
 }
 
 .card-text {
-	margin-top: 0px;
+	margin: 0px;
+}
+
+.page-header {
+    border-bottom: 0px;
+}
+
+.Grid {
+  display: flex;
+}
+
+.Grid-cell {
+  flex: 1;
+}
+
+.card {
+	margin-top: 40px;
+}
+
+#price {
+	font-size: 20px;
+	color: green
+}
+
+.contactButton {
+	color: blue;
+}
+
+.editButton {
+	color: green;
+}
+
+.deleteButton {
+	color: red;
 }
 
 .signup {
@@ -14,24 +63,25 @@ h5 {
 	position: relative;
 }
 
-.ng-view {
-	padding-top: 40px;
-}
-
 .alert {
 	text-align: center;
 }
 
-.ng-leave {
-	width: 100%;
-	position: absolute;
-	-webkit-animation:zoomOutDown 0.5s both ease-in;
-	-moz-animation:zoomOutDown 0.5s both ease-in;
-		animation: zoomOutDown 0.5s both ease-in;
+.card-img-top{
+	max-width: 300px;
+	height: 240px;
+	margin-left: auto;
+	margin-right: auto
 }
 
-.card-img-top{
-	max-width: 200px;
+#tagline {
+	color: white;
+	margin-top: 19px;
+	font-size: 16px
+}
+
+.li {
+	font-size: 16px;
 }
 
 header .navbar {
@@ -70,11 +120,14 @@ header .navbar {
 	to {-moz-transform:rotate(360deg);}
 }
 
+.ng-leave {
+	width: 100%;
+	position: absolute;
+	-webkit-animation:zoomOutDown 0.5s both ease-in;
+	-moz-animation:zoomOutDown 0.5s both ease-in;
+		animation: zoomOutDown 0.5s both ease-in;
+}
+
+
 /*NGANIMATE*/
 /*show and hide*/
-
-.show-hide-message.ng-hide-remove {
-	-webkit-animation:zoomIn 0.3s both ease;
-	-moz-animation:zoomIn 0.3s both ease;
-		animation: zoomIn 0.3s both ease;
-}
