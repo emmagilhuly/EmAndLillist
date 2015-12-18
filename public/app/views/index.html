@@ -64,7 +64,37 @@
 <main class="container">
 	<!-- ANGULAR VIEWS -->
 	<div ng-view></div>
+
+<div>
+	<div class="card-group" ng-show="item.items">
+		<div>
+		Sort By:
+		<select ng-model="itemOrder">Sort
+			<option value="price">Price Low - High</option>
+			<option value="-price">Price High - Low</option>
+			<option value="name">Name A-Z</option>
+			<option value="-name">Name Z-A</option>
+		</select>
+		</div>
+	  <div class="card-deck row">
+	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy:product | filter: filterSearch">
+	      <img class="card-img-top" data-src="..." alt="Card image cap">{{product.image}}
+	      <div class="card-block">
+	        <h5 class="card-title">Name: {{ product.name }}</h5>
+	        <p class="card-text">by: {{product._creator.username}}</p>
+	        <p class="card-text">${{product.price}}</p>
+	        <p class="card-text">{{product.description}}</p>
+	        <p class="card-text"><small class="text-muted">{{product.date}}</small></p>
+		    <a href="#" class="btn btn-primary">Add to Cart</a>
+		    <br><a ng-if="main.loggedIn" ng-href="/items/{{ product._id }}" class="contactButton">Contact Seller</a>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
 </main>
+
 
 </body>
 </html>
