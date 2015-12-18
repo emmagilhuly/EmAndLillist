@@ -1,0 +1,80 @@
+h5 {
+	margin: 0;
+}
+
+.card-text {
+	margin-top: 0px;
+}
+
+.signup {
+	text-align: center;
+}
+
+#content-views {
+	position: relative;
+}
+
+.ng-view {
+	padding-top: 40px;
+}
+
+.alert {
+	text-align: center;
+}
+
+.ng-leave {
+	width: 100%;
+	position: absolute;
+	-webkit-animation:zoomOutDown 0.5s both ease-in;
+	-moz-animation:zoomOutDown 0.5s both ease-in;
+		animation: zoomOutDown 0.5s both ease-in;
+}
+
+.card-img-top{
+	max-width: 200px;
+}
+
+header .navbar {
+	border-radius: 0;
+	background-color: gray;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+
+}
+
+/*login page*/
+.spinner {
+	animation:spin 1s infinite;
+	-webkit-animation:spin 1s infinite;
+	-moz-animation:spin 1s infinite;
+}
+
+@keyframes spin {
+	from { transform:rotate(0deg); }
+	to { transform:rotate(360deg); }
+}
+
+@-webkit-keyframes spin {
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@-moz-keyframs spin {
+	from {-moz-transform:rotate(0deg);}
+	to {-moz-transform:rotate(360deg);}
+}
+
+/*NGANIMATE*/
+/*show and hide*/
+
+.show-hide-message.ng-hide-remove {
+	-webkit-animation:zoomIn 0.3s both ease;
+	-moz-animation:zoomIn 0.3s both ease;
+		animation: zoomIn 0.3s both ease;
+}

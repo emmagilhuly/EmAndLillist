@@ -1,0 +1,58 @@
+<div class="new-item" ng-if="main.loggedIn">
+
+<div class="page-header">
+	<h1 ng-if="item.type == 'create'">Create Item</h1>
+	<h1 ng-if="item.type == 'edit'">Edit Item</h1>
+</div>
+
+<form class="form-horizontal" ng-submit="item.saveItem()">
+
+	<div class="form-group">
+		<label class="col-sm-2 col-sm-offset-2 control-label">Name</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control"ng-model="item.itemData.name">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 col-sm-offset-2 control-label">Description</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" ng-model="item.itemData.description">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 col-sm-offset-2 control-label">Price</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" ng-model="item.itemData.price">
+		</div>
+	</div>
+
+		<div class="form-group">
+		<label class="col-sm-2 col-sm-offset-2 control-label">Picture</label>
+		<div class="col-sm-4">
+			<input type="text" ng-model="item.itemData.picture">
+		</div>
+	</div>
+
+
+	<br><br>
+
+	<div class="form-group">
+	<div class="col-sm-offset-4 col-sm-4">
+		<button type="submit" class="btn btn-block btn-primary" ng-if="item.type == 'create'">Create Item</button>
+		<button type="submit" class="btn btn-block btn-primary" ng-if="item.type == 'edit'">Update Item</button>
+	</div>
+	</div>
+</form>
+
+<div class="row show-hide-message" ng-show="item.message">
+	<div class="col-sm-6 col-sm-offset-2">
+
+		<div class="alert alert-info col-sm-offset-5 col-sm-2">
+			{{item.message}}
+		</div>
+	</div>
+</div>
+
+</div>

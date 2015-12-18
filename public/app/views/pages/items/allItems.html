@@ -1,0 +1,77 @@
+<div="usersitems" ng-if="main.loggedIn" ng-controller="mainController as main">
+
+<div class="page-header">
+	<h1>
+		Items
+		<a href="/items/create" class="btn btn-default" ng-if="main.loggedIn">
+			<span class="glyphicon glyphicon-plus"></span>
+			Sell a New Item
+		</a>
+	</h1>
+
+</div>
+<!--
+<div class="jumbotron text-center" ng-show="item.processing">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading Items...</p>
+</div>
+
+<table class="card-deck" ng-show="item.items">
+	<thead>
+		<tr>
+			<th>_id</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Price</th>
+			<th>Picture</th>
+			<th>Date</th>
+			<th>Seller</th>
+			<th class="col-sm-2"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="product in item.items">
+			<td>{{ product._id }}</td>
+			<td>{{ product.name }}</td>
+			<td>{{ product.description }}</td>
+			<td>${{ product.price }}</td>
+			<td>{{ product.picture }}</td>
+			<td>{{ product.date }}</td>
+			<td>{{ product._creator.username}}</td>
+			<td class="col-sm-2">
+				<a ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>
+				<a href="#" ng-click="item.deleteItem(product._id)" class="btn btn-primary">Delete Item</a>
+			</td>
+		</tr>
+	</tbody>
+</table> -->
+
+<div>
+	<div class="card-group" ng-show="item.items">
+		<div>
+		Sort By:
+		<select ng-model="itemOrder">Sort
+			<option value="price">Price Low - High</option>
+			<option value="-price">Price High - Low</option>
+			<option value="name">Name A-Z</option>
+			<option value="-name">Name Z-A</option>
+		</select>
+		</div>
+	  <div class="card-deck row">
+	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy:product | filter: filterSearch">
+	      <img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
+	      <div class="card-block">
+	        <h5 class="card-title">Name: {{ product.name }}</h5>
+	        <p class="card-text">by: {{product._creator.username}}</p>
+	        <p class="card-text">${{product.price}}</p>
+	        <p class="card-text">{{product.description}}</p>
+	        <p class="card-text"><small class="text-muted">{{product.date}}</small></p>
+		    <a href="#" class="btn btn-primary">Add to Cart</a>
+				<a ng-if="main.loggedIn" ng-href="/items/{{ product._id }}" class="btn btn-danger" >Edit Item</a>
+				<a ng-if="main.loggedIn" href="#" ng-click="item.deleteItem(product._id)" class="btn btn-primary">Delete Item</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</div>
+</div>
