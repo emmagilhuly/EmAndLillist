@@ -18,9 +18,7 @@ angular.module('mainCtrl', [])
 				vm.user = data.data;
 				console.log('user is', vm.user)
 			})
-		} else {
-				$location.path('/login');
-			}
+		}
 	});
 
 	// function to handle login form
