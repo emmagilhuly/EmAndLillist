@@ -1,11 +1,16 @@
-angular.module('itemCtrl', ['itemService'])
+angular.module('itemCtrl', ['itemService', 'authService'])
 
-.controller('itemController', function(Item) {
+.controller('itemController', function(Item, Auth) {
 
 	var vm = this;
 
 	// set a processing variable to show loading things
 	vm.processing = true;
+
+	Auth.getUser()
+		.then(function(data) {
+			vm.user = data.data;
+		});
 
 	// grab all the items at page load
 	Item.all()
@@ -16,6 +21,7 @@ angular.module('itemCtrl', ['itemService'])
 
 			// bind the items that come back to vm.items
 			vm.items = data;
+
 		});
 
 	// function to delete a item
@@ -61,7 +67,7 @@ angular.module('itemCtrl', ['itemService'])
 				vm.message = data.message;
 			});
 			$location.path('/items');
-			
+
 	};
 
 })
@@ -74,6 +80,7 @@ angular.module('itemCtrl', ['itemService'])
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
 	vm.type = 'edit';
+	vm.loggedInUser =
 
 	// get the item data for the item you want to edit
 	// $routeParams is the way we grab data from the URL
