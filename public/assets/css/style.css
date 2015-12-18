@@ -26,14 +26,6 @@ h5 {
     border-bottom: 0px;
 }
 
-.Grid {
-  display: flex;
-}
-
-.Grid-cell {
-  flex: 1;
-}
-
 .card {
 	margin-top: 40px;
 }
@@ -48,11 +40,11 @@ h5 {
 }
 
 .editButton {
-	color: green;
+	color: blue;
 }
 
 .deleteButton {
-	color: red;
+	color: blue;
 }
 
 .signup {
@@ -96,6 +88,11 @@ header .navbar {
 .navbar-inverse .navbar-nav>li>a {
     color: white;
 
+}
+
+#price{
+	font-size: 24px;
+	margin-bottom: 10px
 }
 
 /*login page*/
