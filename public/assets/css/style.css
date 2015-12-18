@@ -1,12 +1,32 @@
+body {
+	font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 h5 {
-	margin: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-size: 30px;
 }
 
 .card-text {
 	margin: 0px;
 }
 
+#itempic {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	margin-top: 15px;
+}
 
+.card {
+	margin-top: 40px;
+}
+
+#price {
+	font-size: 20px;
+	color: green
+}
 
 .contactButton {
 	color: blue;
@@ -45,8 +65,10 @@ h5 {
 }
 
 .card-img-top{
-	max-width: 192px;
-	max-height: 150px;
+	max-width: 288px;
+	max-height: 225px;
+	margin-left: auto;
+	margin-right: auto
 }
 
 header .navbar {
@@ -83,6 +105,11 @@ header .navbar {
 @-moz-keyframs spin {
 	from {-moz-transform:rotate(0deg);}
 	to {-moz-transform:rotate(360deg);}
+}
+
+#signup {
+	margin-left: 300px;
+	margin-bottom: 30px;
 }
 
 /*NGANIMATE*/

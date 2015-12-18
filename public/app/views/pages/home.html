@@ -5,9 +5,8 @@
 		Featured Products
 	</h1>
 
-
 <form role="search">
-	<div class="form-group">
+	<div class="form-group col-sm-4">
 			<input type="text" class="form-control" ng-model="filterSearch" placeholder="Search Items">
 	</div>
 	<button type="submit" class="btn btn-default">Submit</button>
@@ -15,21 +14,23 @@
 
 </div>
 
-
 <div class="card-group row" ng-show="item.items">
   <div class="card-deck">
 		<div class="card col-md-4" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch">
-			<img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
+			<h5 class="card-title">{{ product.name }}</h5>
+			<p class="card-text">by: {{product._creator.username}}</p>
+			<p class="card-text"><small class="text-muted">Date Posted: {{product.date | date:"MM/dd/yyyy"}}</small></p>
+			<div id="itempic">
+			<img class="card-img-top" align="middle" ng-src="{{product.picture}}" alt="Card image cap">
+			</div>
       <div class="card-block">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">by: {{product._creator.username}}</p>
-        <p class="card-text">${{product.price}}</p>
-        <p class="card-text">{{product.description}}</p>
-        <p class="card-text"><small class="text-muted">Date Posted: {{product.date | date:"MM/dd/yyyy"}}</small></p>
-	    <a href="#" class="btn btn-primary">Add to Cart</a>
+				<p class="card-text">{{product.description}}</p>
+				<p class="card-text" id="price">${{product.price}}</p> <a href="#" class="btn btn-primary">Add to Cart</a>
       </div>
     </div>
   </div>
+</div>
+
 </div>
 
 </div>
