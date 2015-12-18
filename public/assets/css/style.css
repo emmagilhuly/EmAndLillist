@@ -26,6 +26,28 @@ h5 {
     border-bottom: 0px;
 }
 
+.card-block{
+	border-style: ridge;
+	border-width: 1px;
+}
+
+#searchform{
+	margin-left: 35%;
+	margin-bottom: -20px;
+	margin-top: 20px
+}
+
+#sellnew{
+	margin-left: 43%;
+	margin-top: 1%;
+	margin-bottom: 1%
+}
+
+.middle {
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
 .card {
 	margin-top: 40px;
 }
@@ -62,8 +84,8 @@ h5 {
 .card-img-top{
 	max-width: 300px;
 	height: 240px;
-	margin-left: auto;
-	margin-right: auto
+	margin-left: 30px;
+	margin-top: 10px
 }
 
 #tagline {
