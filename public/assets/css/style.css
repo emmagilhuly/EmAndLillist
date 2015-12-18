@@ -46,6 +46,7 @@ h5 {
 
 .card-img-top{
 	max-width: 192px;
+	max-height: 150px;
 }
 
 header .navbar {
