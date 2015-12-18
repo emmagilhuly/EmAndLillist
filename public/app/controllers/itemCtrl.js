@@ -80,7 +80,6 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 	// variable to hide/show elements of the view
 	// differentiates between create or edit pages
 	vm.type = 'edit';
-	vm.loggedInUser =
 
 	// get the item data for the item you want to edit
 	// $routeParams is the way we grab data from the URL
