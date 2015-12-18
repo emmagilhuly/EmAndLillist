@@ -24,8 +24,8 @@
 	        <p class="card-text">{{product.description}}</p>
 	        <p class="card-text"><small class="text-muted">Date Posted: {{product.date | date:"MM/dd/yyyy"}}</small></p>
 		    <a href="#" class="btn btn-primary">Add to Cart</a>
-				<br><a ng-if="main.loggedIn" ng-href="/items/{{ product._id }}" class="contactButton">Contact Seller</a>
-				<br><a ng-if="product._creator == item.user" href="#" class="editButton">Edit Item</a>
+				<br><a ng-if="main.loggedIn" href="#" class="contactButton">Contact Seller</a>
+				<br><a ng-if="product._creator == item.user"  ng-href="/items/{{ product._id }}" class="editButton">Edit Item</a>
 				<br><a ng-if="product._creator == item.user" href="#" ng-click="item.deleteItem(product._id)" class="deleteButton">Delete Item</a>
 	      </div>
 	    </div>
