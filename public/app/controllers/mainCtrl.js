@@ -14,8 +14,8 @@ angular.module('mainCtrl', [])
 		// get user information on page load
 		Auth.getUser()
 			.then(function(data) {
-				vm.username = data.data.username;
-				// console.log('user yo', vm.username)
+				vm.user = data.data;
+				console.log('user info', vm.user)
 			})
 		}
 	});

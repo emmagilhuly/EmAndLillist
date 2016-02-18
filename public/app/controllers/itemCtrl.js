@@ -4,26 +4,31 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 
 	var vm = this;
 	vm.user
+	vm.creator
 
 	// set a processing variable to show loading things
 	vm.processing = true;
 
+	vm.loggedIn = Auth.isLoggedIn();
+
 	Auth.getUser()
 		.then(function(data) {
-			vm.username = data.data.username;
-			console.log('gettt me', vm.username)
+			vm.user = data.data.username;
+			console.log('signed in is ', vm.user)
 		});
 
 	// grab all the items at page load
 	Item.all()
 		.success(function(data) {
-
 			// when all the items come back, remove the processing variable
 			vm.processing = false;
 
 			// bind the items that come back to vm.items
 			vm.items = data;
-
+			for (i=0; i<data.length; i++){
+				vm.creator = (data[i]._creator.username)
+				console.log('creator is ' + data[i]._creator.username)
+			}
 		});
 
 	// function to delete a item
