@@ -23,18 +23,17 @@
 	<div class="card-group" ng-show="item.items">
 
 	  <div class="card-deck row">
-	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch">
+	    <div class="card col-md-4" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch" ng-if="item.user === product._creator.username">
 	      <div class="card-block">
 		    <img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
 	        <h5 class="card-title">{{ product.name }}</h5>
+					<p class="card-text">by: {{product._creator.username}}</p>
 					<p class="card-text"><small class="text-muted">Date Posted: {{product.date | date:"MM/dd/yyyy"}}</small></p>
 					<p class="card-text">{{product.description}}</p>
 				  <p class="card-text" id="price">${{product.price}}</p>
 					<a ng-href="/items/{{ product._id }}" class="editButton">Edit Item</a> &nbsp; &nbsp;
 					<a href="#" ng-click="item.deleteItem(product._id)" class="deleteButton">Delete Item</a>
 				<br><br>
-				<!-- <br><a ng-if="product._creator == item.user"  ng-href="/items/{{ product._id }}" class="editButton">Edit Item</a> -->
-				<!-- <br><a ng-if="product._creator == item.user" href="#" ng-click="item.deleteItem(product._id)" class="deleteButton">Delete Item</a> -->
 	      </div>
 	    </div>
 	  </div>

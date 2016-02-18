@@ -3,7 +3,6 @@ angular.module('mainCtrl', [])
 .controller('mainController', function($rootScope, $location, Auth) {
 
 	var vm = this;
-	vm.user
 
 	// get info if a person is logged in
 	vm.loggedIn = Auth.isLoggedIn();
@@ -16,7 +15,7 @@ angular.module('mainCtrl', [])
 		Auth.getUser()
 			.then(function(data) {
 				vm.user = data.data;
-				console.log('user is', vm.user)
+				console.log('user info', vm.user)
 			})
 		}
 	});
