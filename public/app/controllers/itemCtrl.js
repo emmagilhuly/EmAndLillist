@@ -3,13 +3,15 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 .controller('itemController', function(Item, $location, Auth ) {
 
 	var vm = this;
+	vm.user
 
 	// set a processing variable to show loading things
 	vm.processing = true;
 
 	Auth.getUser()
 		.then(function(data) {
-			vm.user = data.data;
+			vm.username = data.data.username;
+			console.log('gettt me', vm.username)
 		});
 
 	// grab all the items at page load
