@@ -51,7 +51,7 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl: 'app/views/pages/items/home.html',
 			controller: 'itemController',
 			controllerAs: 'item'
-		})
+		 })
 
 		// form to create a new item
 		.when('/items/create', {

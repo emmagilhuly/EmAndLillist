@@ -23,7 +23,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 
 			// bind the items that come back to vm.items
 			vm.items = data;
-			console.log('data is ' + vm.items.length)
+			// console.log('data is ' + vm.items.length)
 		});
 
 	// function to delete a item

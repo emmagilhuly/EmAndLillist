@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function($rootScope, $location, Auth) {
+.controller('mainController', function($rootScope, $location, Auth, $window) {
 
 	var vm = this;
 
@@ -15,7 +15,6 @@ angular.module('mainCtrl', [])
 		Auth.getUser()
 			.then(function(data) {
 				vm.user = data.data;
-				console.log('user info', vm.user)
 			})
 		}
 	});
@@ -32,9 +31,11 @@ angular.module('mainCtrl', [])
 				vm.processing = false;
 
 				// if a user successfully logs in, redirect to users page
-				if (data.success)
-					$location.path('/items');
-				else
+				if (data.success) {
+					$window.location.reload()
+					$location.path('/items')
+					console.log('hi')
+				} else
 					vm.error = data.message;
 
 			});
