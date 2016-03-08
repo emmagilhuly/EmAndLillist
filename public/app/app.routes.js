@@ -48,7 +48,7 @@ angular.module('app.routes', ['ngRoute'])
 
 		// show all items
 		.when('/items', {
-			templateUrl: 'app/views/pages/items/allItems.html',
+			templateUrl: 'app/views/pages/items/myItems.html',
 			controller: 'itemController',
 			controllerAs: 'item'
 		})

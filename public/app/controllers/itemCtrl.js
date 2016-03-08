@@ -12,7 +12,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 	Auth.getUser()
 		.then(function(data) {
 			vm.user = data.data.username;
-			console.log('signed in is ', vm.user)
+			// console.log('signed in is ', vm.user)
 		});
 
 	// grab all the items at page load
@@ -23,6 +23,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 
 			// bind the items that come back to vm.items
 			vm.items = data;
+			console.log('data is ' + vm.items.length)
 		});
 
 	// function to delete a item
