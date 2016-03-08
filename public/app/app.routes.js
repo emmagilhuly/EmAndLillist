@@ -6,7 +6,7 @@ angular.module('app.routes', ['ngRoute'])
 
 		// route for the home page
 		.when('/', {
-			templateUrl : 'app/views/pages/home.html',
+			templateUrl : 'app/views/pages/allItems.html',
 			controller: 'itemController',
 			controllerAs: 'item'
 		})
@@ -48,7 +48,7 @@ angular.module('app.routes', ['ngRoute'])
 
 		// show all items
 		.when('/items', {
-			templateUrl: 'app/views/pages/items/myItems.html',
+			templateUrl: 'app/views/pages/items/home.html',
 			controller: 'itemController',
 			controllerAs: 'item'
 		})
