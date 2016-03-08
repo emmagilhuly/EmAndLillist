@@ -48,7 +48,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 })
 
 // controller applied to item creation page
-.controller('itemCreateController', function(Item, $location) {
+.controller('itemCreateController', function(Item, $location, $window) {
 
 	var vm = this;
 
@@ -68,8 +68,8 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 				vm.itemData = {};
 				vm.message = data.message;
 			});
-			$location.path('/items');
-
+		$window.location.reload()
+		$location.path('/items')
 	};
 
 })
