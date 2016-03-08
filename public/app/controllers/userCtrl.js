@@ -77,7 +77,7 @@ angular.module('userCtrl', ['userService'])
 })
 
 // controller applied to user edit page
-.controller('userEditController', function($routeParams, User) {
+.controller('userEditController', function($routeParams, User, $location) {
 
 	var vm = this;
 
@@ -90,7 +90,9 @@ angular.module('userCtrl', ['userService'])
 	User.get($routeParams.user_id)
 		.success(function(data) {
 			vm.userData = data;
-		});
+			$window.location.reload()
+		})
+
 
 	// function to save the user
 	vm.saveUser = function() {

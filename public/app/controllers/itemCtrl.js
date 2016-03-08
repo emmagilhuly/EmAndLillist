@@ -75,7 +75,7 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 })
 
 // controller applied to item edit page
-.controller('itemEditController', function($routeParams, $location, Item) {
+.controller('itemEditController', function($routeParams, $location, Item, $window) {
 
 	var vm = this;
 
@@ -97,14 +97,15 @@ angular.module('itemCtrl', ['itemService', 'authService'])
 		vm.message = '';
 
 		// call the itemService function to update
-		Item.update($routeParams.item_id, vm.itemData, $location)
+		Item.update($routeParams.item_id, vm.itemData, $location, $window)
 			.success(function(data) {
 				vm.processing = false;
 				// clear the form
 				vm.itemData = {};
-				if (data.success)
+				if (data.success) {
+					$window.location.reload()
 					$location.path('/items')
-				else
+				} else
 					vm.error = data.message
 
 				// bind the message from our API to vm.message
