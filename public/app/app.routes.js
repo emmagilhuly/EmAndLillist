@@ -68,12 +68,16 @@ angular.module('app.routes', ['ngRoute'])
 		})
 
 		.when('/checkout', {
-			templateUrl: 'app/views/pages/items/checkout.html'
+			templateUrl: 'app/views/pages/checkout.html',
+			controller: 'itemCtrl',
+			controllerAs: 'item'
 		})
 
 		// page to edit a item
 		.when('/contact', {
-			templateUrl: 'app/views/pages/items/contact.html'
+			templateUrl: 'app/views/pages/contact.html',
+			controller: 'itemCtrl',
+			controllerAs: 'item'
 		});
 
 	$locationProvider.html5Mode(true);
