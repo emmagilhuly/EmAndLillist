@@ -39,7 +39,7 @@ angular.module('userCtrl', ['userService'])
 })
 
 // controller applied to user creation page
-.controller('userCreateController', function($location, User, Auth) {
+.controller('userCreateController', function($location, User, Auth, $window) {
 
 	var vm = this;
 
@@ -62,8 +62,10 @@ angular.module('userCtrl', ['userService'])
 						vm.processing = false;
 						vm.userData = {};
 						// if a user successfully logs in, redirect to users page
-						if (data.success)
-							$location.path('/items');
+						if (data.success) {
+							$window.location.reload()
+							$location.path('/items')
+						}
 						else
 							vm.error = data.message;
 
