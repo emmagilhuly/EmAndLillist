@@ -127,6 +127,11 @@ header .navbar {
     color: white;
 }
 
+.navbar-brand {
+	color: white;
+	margin-left: 47%;
+}
+
 .navbar-inverse .navbar-nav>li>a {
     color: white;
 
