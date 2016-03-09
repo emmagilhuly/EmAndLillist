@@ -167,6 +167,86 @@ header .navbar {
 		animation: zoomOutDown 0.5s both ease-in;
 }
 
-
 /*NGANIMATE*/
 /*show and hide*/
+
+@media screen and (max-width: 1200px) {
+	h5 {
+		font-size: 15px;
+	}
+
+	#price {
+		font-size: 15px;
+	}
+
+	img {
+		vertical-align: middle;
+		max-width: 150px
+	}
+
+	.card-img-top {
+		margin-left: 0px;
+	}
+}
+
+@media screen and (max-width: 993px) {
+	.card-block {
+		width: 200px;
+	}
+
+	.card-img-top {
+		max-height: 150px;
+		margin-left: 0px;
+		vertical-align: center;
+	}
+
+	.middle {
+    margin-left: 0px;
+	}
+
+}
+
+@media screen and (max-width: 767px) {
+
+.card-block {
+	margin-left: auto;
+	margin-right: auto;
+	width: 400px
+}
+
+.card-img-top {
+	max-height: 250px;
+	max-width: 250px;
+	margin-left: 100px
+}
+
+h5 {
+	font-size: 25px
+}
+
+#price {
+	font-size: 25px
+}
+
+img {
+	vertical-align: middle;
+	max-width: 200px
+}
+
+.navbar-brand {
+	margin-bottom: -15px
+}
+
+}
+
+@media screen and (max-width: 500px) {
+
+	.card-block {
+		width: 350px
+	}
+
+	.card-img-top {
+		margin-left: 70px
+	}
+
+}

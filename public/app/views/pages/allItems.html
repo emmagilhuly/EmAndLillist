@@ -1,7 +1,7 @@
 <div class="card-group" ng-show="item.items">
 
 	<div class="card-deck row">
-		<div class="card col-md-4" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch">
+		<div class="card col-sm-4 main" ng-repeat="product in item.items | orderBy: '-date' | filter: filterSearch">
 			<div class="card-block">
 				<div class="middle">
 					<img class="card-img-top" ng-src="{{product.picture}}" alt="Card image cap">
@@ -23,7 +23,7 @@
 </div>
 
 <div class="pages">
-	<button> < </button> &nbsp; &nbsp;
+	<!-- <button> < </button> &nbsp; &nbsp;
 	<a> 1 </a> &nbsp;&nbsp;
 	<a> 2 </a> &nbsp;&nbsp;
 	<a> 3 </a> &nbsp;&nbsp;
@@ -34,5 +34,5 @@
 	<a> 8 </a> &nbsp;&nbsp;
 	<a> 9 </a> &nbsp;&nbsp;
 	<a> 10 </a> &nbsp;&nbsp;
-	<button> > </button>
+	<button> > </button> -->
 <div>
