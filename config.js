@@ -1,5 +1,5 @@
 module.exports = {
-	'port': process.env.PORT || 4444,
+	'port': process.env.PORT || 1111,
 	'database': 'mongodb://admin:admin@ds053954.mongolab.com:53954/lillysdb',
 	// 'database': 'mongodb://localhost:27017/ellist',
 	'secret': 'lilyandemma'
