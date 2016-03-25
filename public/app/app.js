@@ -9,7 +9,7 @@ angular.module('EmAndLilApp', [
 	'userService',
 	'itemCtrl',
 	'itemService'
-]);
+])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {
