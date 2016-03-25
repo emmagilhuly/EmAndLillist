@@ -54,17 +54,15 @@ module.exports = function(app, express) {
 	  });
 	});
 
-//.route is similiar to .get, shortcut to call the Express Router to define multiple requests on a route
+	//.route is similiar to .get
+	//shortcut to call the Express Router to define multiple requests on a route
 	apiRouter.route('/users')
-
 		// create a user (accessed at POST http://localhost:8080/users)
 		.post(function(req, res) {
-
 			var user = new User();		// create a new instance of the User model
 			user.name = req.body.name;  // set the users name (comes from the request)
 			user.username = req.body.username;  // set the users username (comes from the request)
 			user.password = req.body.password;  // set the users password (comes from the request)
-
 			user.save(function(err) {
 				if (err) {
 					// duplicate entry
@@ -78,22 +76,19 @@ module.exports = function(app, express) {
 			});
 		})
 
+	//has to be above middleware to view items
 	apiRouter.route('/items')
-
 	// get all the items (accessed at GET http://localhost:8080/api/items)
 	.get(function(req, res) {
-
 		Item
 		.find({})
 		.populate('_creator')
 		.exec(function(err, items) {
 			if (err) res.send(err);
-
 			// return the users
 			res.json(items);
 		});
-	});
-
+	})
 
 	// route middleware to verify a token
 	// middleware is a way to do something before a request is processed
