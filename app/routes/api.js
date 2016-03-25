@@ -12,7 +12,8 @@ module.exports = function(app, express) {
 	//use express.Router() to define groups of routes
 	var apiRouter = express.Router();
 
-	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+	// AUTHETNICATE A USER
+	// (POST http://localhost:8080/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
 	  // find the user, select the username and password specifically
 	  User.findOne({
@@ -54,6 +55,7 @@ module.exports = function(app, express) {
 	  });
 	});
 
+	//CREATE A USER
 	//.route is similiar to .get
 	//shortcut to call the Express Router to define multiple requests on a route
 	apiRouter.route('/users')
@@ -76,7 +78,7 @@ module.exports = function(app, express) {
 			});
 		})
 
-	//has to be above middleware to view items
+	//VIEW ALL ITEMS
 	apiRouter.route('/items')
 	// get all the items (accessed at GET http://localhost:8080/api/items)
 	.get(function(req, res) {
@@ -90,8 +92,8 @@ module.exports = function(app, express) {
 		});
 	})
 
-	// route middleware to verify a token
-	// middleware is a way to do something before a request is processed
+	// VERIFY A TOKEN
+	// route middleware (middleware is a way to do something before a request is processed)
 	apiRouter.use(function(req, res, next) {
 		// do logging
 		console.log('Somebody just came to our app!');
@@ -122,36 +124,32 @@ module.exports = function(app, express) {
 	  }
 	});
 
-	// test route to make sure everything is working
+	// TEST ROUTE
+	// to make sure everything is working
 	// accessed at GET http://localhost:8080/api
 	apiRouter.get('/', function(req, res) {
 		res.json({ message: 'hooray! welcome to our api!' });
 	});
 
-	// on routes that end in /users
+	// SHOW ALL USERS
 	// ----------------------------------------------------
 	apiRouter.route('/users')
-
 		// get all the users (accessed at GET http://localhost:8080/api/users)
 		.get(function(req, res) {
-
 			User
 			.find({})
 			.populate('items')
 			.exec(function(err, users) {
 				if (err) res.send(err);
-
 				// return the users
 				res.json(users);
 			});
 		});
 
-
+	//CREATE AN ITEM
 	apiRouter.route('/items')
-
 		// create a item (accessed at POST http://localhost:8080/items)
 		.post(function(req, res) {
-
 			var newItem = new Item();
 			newItem.name = req.body.name;
 			newItem.description = req.body.description;
@@ -160,7 +158,6 @@ module.exports = function(app, express) {
 			newItem.date = new Date()
 			newItem._creator = req.decoded.id;
 			console.log("New item:", newItem)
-
 			newItem.save(function(err) {
 				if (err) res.send (err)
 				// return a message
@@ -176,15 +173,12 @@ module.exports = function(app, express) {
 				})
 				res.json({ message: 'Item created!' });
 			});
-
-
 		});
 
-
+	// SHOW, EDIT, DELETE A USER
 	// on routes that end in /users/:user_id
 	// ----------------------------------------------------
 	apiRouter.route('/users/:user_id')
-
 		// get the user with that id
 		.get(function(req, res) {
 			User
@@ -231,15 +225,14 @@ module.exports = function(app, express) {
 		res.send(req.decoded);
 	});
 
+	//SHOW, EDIT, DELETE AN ITEM
 	apiRouter.route('/items/:item_id')
-
 		// get the item with that id
 		.get(function(req, res) {
 			Item.findById(req.params.item_id)
 				.populate('_creator')
 				.exec(function(err, item) {
 				if (err) res.send(err);
-
 				// return that item
 				res.json(item);
 			});
@@ -248,24 +241,19 @@ module.exports = function(app, express) {
 		// update the item with this id
 		.put(function(req, res) {
 			Item.findById(req.params.item_id, function(err, item) {
-
 				if (err) res.send(err);
-
 				// set the new item information if it exists in the request
 				if (req.body.name) item.name = req.body.name;
 				if (req.body.description) item.description = req.body.description;
 				if (req.body.price) item.price = req.body.price;
 				if (req.body.picture) item.picture = req.body.picture;
 				if (req.body.date) item.date = req.body.date;
-
 				// save the item
 				item.save(function(err) {
 					if (err) res.send(err);
-
 					// return a message
 					res.json({ message: 'Item updated!' });
 				});
-
 			});
 		})
 
@@ -275,11 +263,9 @@ module.exports = function(app, express) {
 				_id: req.params.item_id
 			}, function (err, item) {
 				if (err) res.send(err);
-
 				res.json({message: 'Item successfully deleted'})
 			});
 		});
-
 
 	return apiRouter;
 };
