@@ -6,6 +6,7 @@ angular.module('authService', [])
 // inject $q to return promise objects
 // inject AuthToken to manage tokens
 // ===================================================
+
 .factory('Auth', function($http, $q, AuthToken) {
 
 	// create auth factory object
@@ -13,7 +14,6 @@ angular.module('authService', [])
 
 	// log a user in
 	authFactory.login = function(username, password) {
-
 		// return the promise object and its data
 		return $http.post('/api/authenticate', {
 			username: username,
@@ -88,27 +88,26 @@ angular.module('authService', [])
 	var interceptorFactory = {};
 
 	// this will happen on all HTTP requests
+	// request lets us intercept requests before they are sent
+	// response lets us change the response that we get back from a request
 	interceptorFactory.request = function(config) {
-
 		// grab the token
 		var token = AuthToken.getToken();
-
 		// if the token exists, add it to the header as x-access-token
 		if (token)
 			config.headers['x-access-token'] = token;
-
 		return config;
 	};
 
 	// happens on response errors
+	// requestError captures requests that have been cancelled
+	// responseError catches backend calls that fail. In this case ,we will use it to catch 403 Forbidden errors if the token does not validate or does not exist
 	interceptorFactory.responseError = function(response) {
-
 		// if our server returns a 403 forbidden response
 		if (response.status == 403) {
 			AuthToken.setToken();
 			$location.path('/login');
 		}
-
 		// return the errors from the server as a promise
 		return $q.reject(response);
 	};
