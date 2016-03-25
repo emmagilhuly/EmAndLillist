@@ -22,14 +22,11 @@ angular.module('mainCtrl', [])
 	// function to handle login form
 	vm.doLogin = function() {
 		vm.processing = true;
-
 		// clear the error
 		vm.error = '';
-
 		Auth.login(vm.loginData.username, vm.loginData.password)
 			.success(function(data) {
 				vm.processing = false;
-
 				// if a user successfully logs in, redirect to users page
 				if (data.success) {
 					$window.location.reload()
@@ -37,7 +34,6 @@ angular.module('mainCtrl', [])
 					console.log('hi')
 				} else
 					vm.error = data.message;
-
 			});
 	};
 
@@ -45,7 +41,6 @@ angular.module('mainCtrl', [])
 	vm.doLogout = function() {
 		Auth.logout();
 		vm.user = '';
-
 		$location.path('/login');
 	};
 
