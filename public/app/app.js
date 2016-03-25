@@ -1,3 +1,5 @@
+// Main module, Angular code
+
 angular.module('EmAndLilApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService', 'itemCtrl', 'itemService'])
 
 // application configuration to integrate token into requests

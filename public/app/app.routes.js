@@ -1,7 +1,8 @@
+// Angular routes
+// inject ngRoute for all of our routing needs
 angular.module('app.routes', ['ngRoute'])
 
 .config(function($routeProvider, $locationProvider) {
-
 	$routeProvider
 
 		// route for the home page
@@ -18,24 +19,23 @@ angular.module('app.routes', ['ngRoute'])
     	controllerAs: 'login'
 		})
 
-		// show all users
-		.when('/users', {
-			templateUrl: 'app/views/pages/users/all.html',
-			controller: 'userController',
+		.when('/signup', {
+			templateUrl: 'app/views/pages/signup.html',
+			controller: 'userCreateController',
 			controllerAs: 'user'
 		})
 
-		// form to create a new user
-		// same view as edit page
+		// form to create a new user, same view as edit page
 		.when('/users/create', {
 			templateUrl: 'app/views/pages/users/single.html',
 			controller: 'userCreateController',
 			controllerAs: 'user'
 		})
 
-		.when('/signup', {
-			templateUrl: 'app/views/pages/signup.html',
-			controller: 'userCreateController',
+		// show all users
+		.when('/users', {
+			templateUrl: 'app/views/pages/users/all.html',
+			controller: 'userController',
 			controllerAs: 'user'
 		})
 

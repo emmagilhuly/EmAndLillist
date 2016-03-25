@@ -30,8 +30,7 @@ app.use(morgan('dev'));
 // connect to our database (hosted on modulus.io)
 mongoose.connect(config.database);
 
-// set static files location
-// used for requests that our frontend will make
+// set the public folder to serve public assets
 app.use(express.static(__dirname + '/public'));
 
 // ROUTES FOR OUR API =================
@@ -44,7 +43,7 @@ app.use('/api', apiRoutes);
 // MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
-//send our index.html file to the user as the home page
+// set up our one route to the index.html file
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
