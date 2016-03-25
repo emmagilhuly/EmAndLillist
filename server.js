@@ -1,11 +1,11 @@
 // BASE SETUP
 // ======================================
-
 // CALL THE PACKAGES --------------------
 var express    = require('express');		// call express
 var app        = express(); 				// define our app using express
-var bodyParser = require('body-parser'); 	// get body-parser
+var bodyParser = require('body-parser'); 	// get body-parser, able to use json objects
 var morgan     = require('morgan'); 		// used to see requests
+var mongoose   = require('mongoose'); // for working with our database
 var mongoose   = require('mongoose');
 var config 	   = require('./config');
 var path 	     = require('path');
@@ -16,7 +16,7 @@ var path 	     = require('path');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// configure our app to handle CORS requests
+// configure our app to handle CORS requests, allows any domain to access our API
 app.use(function(req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
@@ -44,6 +44,7 @@ app.use('/api', apiRoutes);
 // MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
+//send our index.html file to the user as the home page
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });

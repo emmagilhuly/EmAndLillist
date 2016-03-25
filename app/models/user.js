@@ -1,6 +1,7 @@
+// grab the packages that we need for our user model
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
-var bcrypt 		 = require('bcrypt-nodejs');
+var bcrypt 		   = require('bcrypt-nodejs');
 
 // user schema
 var UserSchema = new Schema({
@@ -17,7 +18,7 @@ UserSchema.pre('save', function(next) {
 	// hash the password only if the password has been changed or user is new
 	if (!user.isModified('password')) return next();
 
-	// generate the hash
+	// generate the salt
 	bcrypt.hash(user.password, null, null, function(err, hash) {
 		if (err) return next(err);
 
@@ -34,4 +35,5 @@ UserSchema.methods.comparePassword = function(password) {
 	return bcrypt.compareSync(password, user.password);
 };
 
+// return the model
 module.exports = mongoose.model('User', UserSchema);

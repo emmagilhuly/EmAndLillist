@@ -9,6 +9,7 @@ var superSecret = config.secret;
 
 module.exports = function(app, express) {
 
+	//use express.Router() to define groups of routes
 	var apiRouter = express.Router();
 
 	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
@@ -61,6 +62,7 @@ module.exports = function(app, express) {
 	  });
 	});
 
+//.route is similiar to .get, shortcut to call the Express Router to define multiple requests on a route
 	apiRouter.route('/users')
 
 		// create a user (accessed at POST http://localhost:8080/users)
@@ -85,24 +87,25 @@ module.exports = function(app, express) {
 			});
 		})
 
-		apiRouter.route('/items')
+	apiRouter.route('/items')
 
-		// get all the items (accessed at GET http://localhost:8080/api/items)
-		.get(function(req, res) {
+	// get all the items (accessed at GET http://localhost:8080/api/items)
+	.get(function(req, res) {
 
-			Item
-			.find({})
-			.populate('_creator')
-			.exec(function(err, items) {
-				if (err) res.send(err);
+		Item
+		.find({})
+		.populate('_creator')
+		.exec(function(err, items) {
+			if (err) res.send(err);
 
-				// return the users
-				res.json(items);
-			});
+			// return the users
+			res.json(items);
 		});
+	});
 
 
 	// route middleware to verify a token
+	// middleware is a way to do something before a request is processed
 	apiRouter.use(function(req, res, next) {
 		// do logging
 		console.log('Somebody just came to our app!');
@@ -305,15 +308,6 @@ module.exports = function(app, express) {
 			});
 		});
 
-// apiRouter.post('/addItemsToUser',function(req,res){
-// 	User.findById(req.token.id,function(err,user){
-// 		user.addItems(req.body.item)
-// 		user.save(function (err,user) {
-// 			res.json(user)
-// 		})
-// 	})
-//
-// })
 
 	return apiRouter;
 };
