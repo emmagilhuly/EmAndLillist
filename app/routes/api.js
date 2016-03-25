@@ -81,7 +81,6 @@ module.exports = function(app, express) {
 					else
 						return res.send(err);
 				}
-
 				// return a message
 				res.json({ message: 'User created!' });
 			});
@@ -214,7 +213,6 @@ module.exports = function(app, express) {
 			.populate('items')
 			.exec(function(err, user) {
 				if (err) res.send(err);
-
 				// return that user
 				res.json(user);
 			});
@@ -222,24 +220,20 @@ module.exports = function(app, express) {
 
 		// update the user with this id
 		.put(function(req, res) {
+			//use our model to find which user we want
 			User.findById(req.params.user_id, function(err, user) {
-
 				if (err) res.send(err);
-
-				// set the new user information if it exists in the request
+				// update the user only if its new
 				if (req.body.name) user.name = req.body.name;
 				if (req.body.username) user.username = req.body.username;
 				if (req.body.password) user.password = req.body.password;
 				if (req.body.item) user.addItems(req.body.item);
-
 				// save the user
 				user.save(function(err) {
 					if (err) res.send(err);
-
 					// return a message
 					res.json({ message: 'User updated!' });
 				});
-
 			});
 		})
 
@@ -249,7 +243,6 @@ module.exports = function(app, express) {
 				_id: req.params.user_id
 			}, function (err, user) {
 				if (err) res.send(err);
-
 				res.json({message: 'Successfully deleted'})
 			});
 		});
